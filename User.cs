@@ -3,86 +3,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Stregsystem
+namespace User
 {
-    internal class User
+    public class User : IComparable<User>
     {
-        private class Name
+        public event EventHandler BelowBalanceThreshold;
+
+        private static int _nextId = 1;
+
+        private static DDK _balanceThreshold = new DDK(50, 0);
+
+        public int Id { get => _id; }
+
+        public Name FirstName { get => _firstName; }
+
+        public Name LastName { get => _lastName; }
+
+        public MailAddress Email { get => _email; }
+
+        public Username Username { get => _userName; }
+
+        public DDK Balance
         {
-            public string String
+            get => _balance;
+            set
             {
-                get { return _string; }
-                set
-                {
-                    if (value != null)
-                    {
-                        _string = value;
-                    }
-                    else
-                    {
-                        throw new ArgumentNullException();
-                    }
-                }
-            }
-
-            private string _string = "nil";
-        }
-
-        private class Username
-        {
-            private static readonly Regex _validator = new Regex(@"^([a-z0-9_])+$");
-
-            public string String
-            {
-                get { return _string; }
-                set
-                {
-                    if (_validator.IsMatch(value))
-                    {
-                        _string = value;
-                    }
-                    else
-                    {
-                        throw new ArgumentException();
-                    }
-
-                }
-            }
-
-            private string _string = "nil";
-        }
-
-        public class DDK
-        {
-            private uint _kroner = 0;
-            private uint _oere = 0;
-
-            public void SetBalance(uint kroner, uint oere)
-            {
-                _kroner = kroner;
-                _oere = oere;
-            }
-
-            public DDK(uint kroner, uint oere)
-            {
-                _kroner = kroner;
-                _oere = oere;
+                _balance = value;
+                if(_balance < _balanceThreshold)
+                    OnBelowBalanceThreshold(new EventArgs());
             }
         }
 
-        // public uint Id { get => _id; }
-        // public string FirstName { get => _firstName.String; }
-        // public string LastName { get => _lastName.String; }
-        // public MailAddress Email { get => _email; }
-        // public string UserUsername { get => _userName.String; }
-        // public Balance UserBalance { get => _balance; }
-
-        static int nextId = 1;
-
-        private int _id = 0;
+        private int _id = _nextId++;
 
         private Name _firstName = new Name();
 
@@ -94,19 +48,18 @@ namespace Stregsystem
 
         private DDK _balance = new DDK(0, 0);
 
-
         public override string ToString()
         {
-            return _firstName.String + " " + _lastName.String;
+            return _firstName.String + " " + _lastName.String + "(" + _email.Address + ")";
         }
 
         public override bool Equals(object obj)
         {
-            User that = obj as User;
-            if (that == null)
+            User other = obj as User;
+            if (other == null)
                 return false;
 
-            if (this.GetHashCode() != that.GetHashCode())
+            if (this.GetHashCode() != other.GetHashCode())
                 return false;
 
             return true;
@@ -117,11 +70,21 @@ namespace Stregsystem
             return _id;
         }
 
-        public User(string firstName, string lastName, MailAddress email, string username)
+        public int CompareTo(User other)
         {
-            _id = nextId++;
-            _firstName.String = firstName;
-            _lastName.String = lastName;
+            return this.Id.CompareTo(other.Id);
+        }
+
+        protected virtual void OnBelowBalanceThreshold(EventArgs e)
+        {
+            EventHandler handler = BelowBalanceThreshold;
+            handler?.Invoke(this, e);
+        }
+
+        public User(Name firstName, Name lastName, MailAddress email, Username username)
+        {
+            _firstName = firstName;
+            _lastName = lastName;
             _email = email;
         }
     }
