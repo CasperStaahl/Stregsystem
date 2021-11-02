@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
+using Shared;
 
 namespace User
 {
@@ -11,11 +12,9 @@ namespace User
     {
         public event EventHandler BelowBalanceThreshold;
 
-        private static int _nextId = 1;
-
         private static DDK _balanceThreshold = new DDK(50, 0);
 
-        public int Id { get => _id; }
+        public Id Id { get => _id; }
 
         public Name FirstName { get => _firstName; }
 
@@ -36,7 +35,7 @@ namespace User
             }
         }
 
-        private int _id = _nextId++;
+        private Id _id = new Id();
 
         private Name _firstName = new Name();
 
@@ -67,12 +66,12 @@ namespace User
 
         public override int GetHashCode()
         {
-            return _id;
+            return _id.Number;
         }
 
         public int CompareTo(User other)
         {
-            return this.Id.CompareTo(other.Id);
+            return this.Id.Number.CompareTo(other.Id.Number);
         }
 
         protected virtual void OnBelowBalanceThreshold(EventArgs e)
