@@ -1,12 +1,25 @@
 using System;
 
-namespace User
+namespace Stregsystem.Shared
 {
     public class DDK
     {
         public uint Kroner { get; set; }
         public uint Oere { get; set; }
-        
+
+        public override string ToString()
+        {
+            switch (Oere)
+            {
+                case < 9:
+                    return Kroner.ToString() + "." + Oere.ToString();
+                case >= 0:
+                    return Kroner.ToString() + "." + "0" + Oere.ToString();
+                default:
+                    throw new FormatException();
+            }
+        }
+
         public static bool operator <(DDK a, DDK b)
         {
             if (a.Kroner < b.Kroner)
@@ -29,7 +42,7 @@ namespace User
 
         public DDK(uint kroner, uint oere)
         {
-            if(9 < oere)
+            if (99 < oere)
                 throw new ArgumentException();
 
             Kroner = kroner;
