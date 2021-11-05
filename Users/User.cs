@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
-using Shared;
+using Stregsystem.Shared;
 
-namespace User
+namespace Stregsystem.Users
 {
     public class User : IComparable<User>
     {
@@ -16,13 +12,13 @@ namespace User
 
         public Id Id { get => _id; }
 
-        public Name FirstName { get => _firstName; }
+        // public Name FirstName { get => _firstName; }
 
-        public Name LastName { get => _lastName; }
+        // public Name LastName { get => _lastName; }
 
-        public MailAddress Email { get => _email; }
+        // public MailAddress Email { get => _email; }
 
-        public Username Username { get => _userName; }
+        // public Username Username { get => _userName; }
 
         public DDK Balance
         {
@@ -30,7 +26,7 @@ namespace User
             set
             {
                 _balance = value;
-                if(_balance < _balanceThreshold)
+                if (_balance < _balanceThreshold)
                     OnBelowBalanceThreshold(new EventArgs());
             }
         }
@@ -58,10 +54,10 @@ namespace User
             if (other == null)
                 return false;
 
-            if (this.GetHashCode() != other.GetHashCode())
-                return false;
+            if (GetHashCode() == other.GetHashCode())
+                return true;
 
-            return true;
+            return false;
         }
 
         public override int GetHashCode()
@@ -71,7 +67,7 @@ namespace User
 
         public int CompareTo(User other)
         {
-            return this.Id.Number.CompareTo(other.Id.Number);
+            return Id.Number.CompareTo(other.Id.Number);
         }
 
         protected virtual void OnBelowBalanceThreshold(EventArgs e)
