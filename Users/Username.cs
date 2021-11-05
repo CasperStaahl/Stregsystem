@@ -1,7 +1,7 @@
 using System;
 using System.Text.RegularExpressions;
 
-namespace User
+namespace Stregsystem.Users
 {
     public class Username
     {
