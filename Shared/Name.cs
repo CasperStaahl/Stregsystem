@@ -1,6 +1,6 @@
 using System;
 
-namespace User
+namespace Stregsystem.Shared
 {
     public class Name
     {
