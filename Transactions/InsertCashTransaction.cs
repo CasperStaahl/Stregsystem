@@ -8,8 +8,8 @@ namespace Stregsystem.Transactions
     {
         public override void Execute()
         {
-            base.Execute();
            _user.Balance = _user.Balance + _amount; 
+            base.Execute();
         }
 
         public override string ToString()
