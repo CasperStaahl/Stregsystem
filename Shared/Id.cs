@@ -1,6 +1,6 @@
 namespace Stregsystem.Shared
 {
-    public class Id
+    public class Id<T> 
     {
         private static int _nextNumber = 1;
         public int Number { get; } = 0;
