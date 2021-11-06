@@ -1,14 +1,16 @@
 using Stregsystem.Shared;
 
-namespace Stregsystem.Product
+namespace Stregsystem.Products
 {
-    class Product
+    public class Product
     {
-        private Id _id = new Id();
+        public DDK Price { get => _price; }
+
+        private Id<Product> _id = new Id<Product>();
 
         private Name _name = new Name();
 
-        private DDK _price = new DDK(0, 0);
+        private DDK _price = new DDK(0);
 
         private bool _Active = false;
 

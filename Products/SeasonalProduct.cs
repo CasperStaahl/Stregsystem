@@ -1,9 +1,9 @@
 using System;
 using Stregsystem.Shared;
 
-namespace Stregsystem.Product
+namespace Stregsystem.Products
 {
-    class SeasonalProduct : Product
+    internal class SeasonalProduct : Product
     {
         public DateTime SeasonStartDate
         {
