@@ -4,28 +4,30 @@ using Stregsystem.Users;
 
 namespace Stregsystem.Transactions
 {
-    abstract class Transaction
+    internal abstract class Transaction
     {
-        private Id _id = new Id();
+        protected User _user;
 
-        private User _user;
+        protected DDK _amount = new DDK(0);
 
-        private DateTime _date = new DateTime();
+        protected DateTime _date = new DateTime();
 
-        private DDK _amount = new DDK(0, 0);
+        private Id<Transaction> _id = new Id<Transaction>();
 
-        public abstract void Execute();
+        protected Transaction(User user, DDK amount)
+        {
+            _user = user;
+            _amount = amount;
+        }
+
+        public virtual void Execute()
+        {
+            _date = DateTime.Now;
+        }
 
         public override string ToString()
         {
             return $"{_id} {_user.ToString()} {_amount} {_date.ToString()}";
-        }
-
-        protected Transaction(User user, DateTime date, DDK amount)
-        {
-            _user = user;
-            _date = date;
-            _amount = amount;
         }
     }
 }
