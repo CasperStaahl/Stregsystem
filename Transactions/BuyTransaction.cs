@@ -9,19 +9,30 @@ namespace Stregsystem.Transactions
     {
         private Product _product;
 
+        public BuyTransaction(User user, Product product) : base(user, product.Price)
+        {
+            _product = product;
+            _product = product;
+        }
+
         public override void Execute()
         {
-            base.Execute();
-            DDK userProxyBalance = _user.Balance;
-            userProxyBalance = userProxyBalance - _amount;  
-
-            if (userProxyBalance < new DDK(0) && _product is not SeasonalProduct)
+            if (TransactionIsLegal())
             {
-                throw new Exception(); // TODO this should be InsufficientCredistException
+                base.Execute();
+                _user.Balance = _user.Balance - _amount;
+            }
+            else if (!_product.IsActive)
+            {
+                throw new ProductIsNotActiveException($"{_product.ToString()} is not Active");
+            }
+            else if (!_product.CanBeBoughtOnCredit)
+            {
+                throw new InsufficientCredistException($"{_user.ToString()} does not have enough credit to buy {_product.ToString()}");
             }
             else
             {
-                _user.Balance = _user.Balance - _amount; 
+                throw new Exception();
             }
         }
 
@@ -30,10 +41,26 @@ namespace Stregsystem.Transactions
             return $"Buy {_product.ToString()}: {base.ToString()}";
         }
 
-        public BuyTransaction(User user, Product product) : base(user, product.Price)
+        private bool TransactionIsLegal()
         {
-            _product = product;
-            _product = product;
+            DDK userProxyBalance = _user.Balance;
+            userProxyBalance = userProxyBalance - _amount;
+            bool baseTransactionIsLegal = (_product.IsActive) && (new DDK(0) <= userProxyBalance || _product.CanBeBoughtOnCredit);
+
+            if (_product is not SeasonalProduct)
+            {
+                return baseTransactionIsLegal;
+            }
+            else if (_product is SeasonalProduct)
+            {
+                SeasonalProduct product = _product as SeasonalProduct;
+                return baseTransactionIsLegal && product.SeasonStartDate < DateTime.Now && DateTime.Now < product.SeasonEndDate;
+            }
+            else
+            {
+                throw new Exception();
+            }
         }
+
     }
 }
