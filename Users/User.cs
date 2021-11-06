@@ -8,9 +8,9 @@ namespace Stregsystem.Users
     {
         public event EventHandler BelowBalanceThreshold;
 
-        private static DDK _balanceThreshold = new DDK(50, 0);
+        private static DDK _balanceThreshold = new DDK(50);
 
-        public Id Id { get => _id; }
+        public Id<User> Id { get => _id; }
 
         // public Name FirstName { get => _firstName; }
 
@@ -31,7 +31,7 @@ namespace Stregsystem.Users
             }
         }
 
-        private Id _id = new Id();
+        private Id<User> _id = new Id<User>();
 
         private Name _firstName = new Name();
 
@@ -41,7 +41,7 @@ namespace Stregsystem.Users
 
         private Username _userName = new Username();
 
-        private DDK _balance = new DDK(0, 0);
+        private DDK _balance = new DDK(0);
 
         public override string ToString()
         {
