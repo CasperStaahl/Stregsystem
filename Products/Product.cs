@@ -6,13 +6,17 @@ namespace Stregsystem.Products
     {
         public DDK Price { get => _price; }
 
+        public bool IsActive { get => _IsActive; }
+
+        public bool CanBeBoughtOnCredit { get => _canBeBoughtOnCredit; }
+
         private Id<Product> _id = new Id<Product>();
 
         private Name _name = new Name();
 
         private DDK _price = new DDK(0);
 
-        private bool _Active = false;
+        private bool _IsActive = false;
 
         private bool _canBeBoughtOnCredit = false;
 
@@ -21,11 +25,11 @@ namespace Stregsystem.Products
             return _id + " " + _name.String + " " + _price.ToString();
         }
 
-        public Product(Name name, DDK price, bool active, bool canBeBoughtOnCredit)
+        public Product(Name name, DDK price, bool isActive, bool canBeBoughtOnCredit)
         {
             _name = name;
             _price = price;
-            _Active = active;
+            _IsActive = isActive;
             _canBeBoughtOnCredit = canBeBoughtOnCredit;
         }
     }
