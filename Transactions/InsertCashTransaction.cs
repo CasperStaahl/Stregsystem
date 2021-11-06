@@ -8,7 +8,8 @@ namespace Stregsystem.Transactions
     {
         public override void Execute()
         {
-            throw new System.NotImplementedException();
+            base.Execute();
+           _user.Balance = _user.Balance + _amount; 
         }
 
         public override string ToString()
@@ -16,7 +17,6 @@ namespace Stregsystem.Transactions
             return $"Insert: {base.ToString()}";
         }
 
-        public InsertCashTransaction(User user, DateTime date, DDK amount) : base(user, date, amount) { }
-
+        public InsertCashTransaction(User user, DateTime date, DDK amount) : base(user, amount) { }
     }
 }
