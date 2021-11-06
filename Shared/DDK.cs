@@ -4,49 +4,38 @@ namespace Stregsystem.Shared
 {
     public class DDK
     {
-        public uint Kroner { get; set; }
-        public uint Oere { get; set; }
+        protected decimal _numericValue = 0;
 
         public override string ToString()
         {
-            switch (Oere)
-            {
-                case < 9:
-                    return Kroner.ToString() + "." + Oere.ToString();
-                case >= 0:
-                    return Kroner.ToString() + "." + "0" + Oere.ToString();
-                default:
-                    throw new FormatException();
-            }
+            return $"{_numericValue.ToString()} DDK";
         }
 
         public static bool operator <(DDK a, DDK b)
         {
-            if (a.Kroner < b.Kroner)
-                return true;
-            else if (a.Oere < b.Oere)
-                return true;
-            else
-                return false;
+            return a._numericValue < b._numericValue;
         }
 
         public static bool operator >(DDK a, DDK b)
         {
-            if (a.Kroner > b.Kroner)
-                return true;
-            else if (a.Oere > b.Oere)
-                return true;
-            else
-                return false;
+            return a._numericValue > b._numericValue;
         }
 
-        public DDK(uint kroner, uint oere)
+        public static DDK operator +(DDK a, DDK b)
         {
-            if (99 < oere)
-                throw new ArgumentException();
+            decimal newNumericValue = a._numericValue + b._numericValue;
+            return new DDK(newNumericValue);
+        }
 
-            Kroner = kroner;
-            Oere = oere;
+        public static DDK operator -(DDK a, DDK b)
+        {
+            decimal newNumericValue = a._numericValue - b._numericValue;
+            return new DDK(newNumericValue);
+        }
+
+        public DDK(decimal numericValue)
+        {
+            _numericValue = numericValue;
         }
     }
 }
