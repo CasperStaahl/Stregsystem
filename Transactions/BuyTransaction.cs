@@ -19,8 +19,8 @@ namespace Stregsystem.Transactions
         {
             if (TransactionIsLegal())
             {
-                base.Execute();
                 _user.Balance = _user.Balance - _amount;
+                base.Execute();
             }
             else if (!_product.IsActive)
             {
