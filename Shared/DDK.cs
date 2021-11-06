@@ -21,6 +21,16 @@ namespace Stregsystem.Shared
             return a._numericValue > b._numericValue;
         }
 
+        public static bool operator <=(DDK a, DDK b)
+        {
+            return a._numericValue <= b._numericValue;
+        }
+
+        public static bool operator >=(DDK a, DDK b)
+        {
+            return a._numericValue >= b._numericValue;
+        }
+
         public static DDK operator +(DDK a, DDK b)
         {
             decimal newNumericValue = a._numericValue + b._numericValue;
