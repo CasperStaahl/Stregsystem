@@ -1,24 +1,21 @@
 using System;
-using System.Text.RegularExpressions;
 
-namespace Stregsystem.Users
+namespace src.Shared
 {
-    public class Username
+    public class Name
     {
-        private static readonly Regex _validator = new Regex(@"^([a-z0-9_])+$");
-
         public string String
         {
             get { return _string; }
             set
             {
-                if (_validator.IsMatch(value))
+                if (value != null)
                 {
                     _string = value;
                 }
                 else
                 {
-                    throw new ArgumentException();
+                    throw new ArgumentNullException();
                 }
             }
         }

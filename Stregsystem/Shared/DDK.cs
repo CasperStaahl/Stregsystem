@@ -1,6 +1,6 @@
 using System;
 
-namespace Stregsystem.Shared
+namespace src.Shared
 {
     public class DDK
     {

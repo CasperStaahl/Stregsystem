@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Transactions;
-using Stregsystem.Products;
+using src.Products;
+using src.Shared;
+using src.Users;
 using Stregsystem.Shared;
-using Stregsystem.Users;
 
 namespace Stregsystem
 {

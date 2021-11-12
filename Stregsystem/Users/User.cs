@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Net.Mail;
+using src.Shared;
 using Stregsystem.Shared;
 
-namespace Stregsystem.Users
+namespace src.Users
 {
     public class User : IComparable<User>
     {

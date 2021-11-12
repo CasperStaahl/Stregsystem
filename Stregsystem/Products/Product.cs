@@ -1,6 +1,7 @@
+using src.Shared;
 using Stregsystem.Shared;
 
-namespace Stregsystem.Products
+namespace src.Products
 {
     public class Product
     {

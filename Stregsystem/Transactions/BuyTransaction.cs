@@ -1,9 +1,9 @@
 using System;
-using Stregsystem.Shared;
-using Stregsystem.Users;
-using Stregsystem.Products;
+using src.Products;
+using src.Shared;
+using src.Users;
 
-namespace Stregsystem.Transactions
+namespace src.Transactions
 {
     internal class BuyTransaction : Transaction
     {
@@ -45,7 +45,7 @@ namespace Stregsystem.Transactions
         {
             DDK userProxyBalance = _user.Balance;
             userProxyBalance = userProxyBalance - _amount;
-            bool baseTransactionIsLegal = (_product.IsActive) && (new DDK(0) <= userProxyBalance || _product.CanBeBoughtOnCredit);
+            bool baseTransactionIsLegal = _product.IsActive && (new DDK(0) <= userProxyBalance || _product.CanBeBoughtOnCredit);
 
             if (_product is not SeasonalProduct)
             {

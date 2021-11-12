@@ -1,4 +1,4 @@
-﻿namespace Stregsystem.Transactions
+﻿namespace src.Transactions
 {
     [System.Serializable]
     public class ProductIsNotActiveException : System.Exception

@@ -1,7 +1,7 @@
 using System;
-using Stregsystem.Shared;
+using src.Shared;
 
-namespace Stregsystem.Products
+namespace src.Products
 {
     internal class SeasonalProduct : Product
     {

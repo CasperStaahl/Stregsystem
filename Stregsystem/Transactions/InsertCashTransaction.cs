@@ -1,14 +1,14 @@
-﻿using Stregsystem.Shared;
-using Stregsystem.Users;
+﻿using src.Shared;
+using src.Users;
 using System;
 
-namespace Stregsystem.Transactions
+namespace src.Transactions
 {
     internal class InsertCashTransaction : Transaction
     {
         public override void Execute()
         {
-           _user.Balance = _user.Balance + _amount; 
+            _user.Balance = _user.Balance + _amount;
             base.Execute();
         }
 
