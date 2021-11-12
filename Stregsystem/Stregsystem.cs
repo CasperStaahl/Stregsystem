@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Transactions;
 using src.Products;
-using src.Shared;
 using src.Users;
 using Stregsystem.Shared;
 
@@ -17,7 +16,7 @@ namespace Stregsystem
             throw new NotImplementedException();
         }
 
-        private void AddCreditToAccount(User user, DDK amount)
+        private void AddCreditToAccount(User user, Ddk amount)
         {
             throw new NotImplementedException();
         }

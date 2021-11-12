@@ -1,5 +1,5 @@
-﻿using src.Shared;
-using src.Users;
+﻿using src.Users;
+using Stregsystem.Shared;
 using System;
 
 namespace src.Transactions
@@ -17,6 +17,6 @@ namespace src.Transactions
             return $"Insert: {base.ToString()}";
         }
 
-        public InsertCashTransaction(User user, DateTime date, DDK amount) : base(user, amount) { }
+        public InsertCashTransaction(User user, DateTime date, Ddk amount) : base(user, amount) { }
     }
 }

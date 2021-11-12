@@ -9,7 +9,7 @@ namespace src.Users
     {
         public event EventHandler BelowBalanceThreshold;
 
-        private static DDK _balanceThreshold = new DDK(50);
+        private static Ddk _balanceThreshold = new Ddk(50);
 
         public Id<User> Id { get => _id; }
 
@@ -21,7 +21,7 @@ namespace src.Users
 
         // public Username Username { get => _userName; }
 
-        public DDK Balance
+        public Ddk Balance
         {
             get => _balance;
             set
@@ -42,7 +42,7 @@ namespace src.Users
 
         private Username _userName = new Username();
 
-        private DDK _balance = new DDK(0);
+        private Ddk _balance = new Ddk(0);
 
         public override string ToString()
         {

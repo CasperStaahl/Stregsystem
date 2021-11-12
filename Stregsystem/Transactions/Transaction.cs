@@ -1,5 +1,4 @@
 using System;
-using src.Shared;
 using src.Users;
 using Stregsystem.Shared;
 
@@ -9,13 +8,13 @@ namespace src.Transactions
     {
         protected User _user;
 
-        protected DDK _amount = new DDK(0);
+        protected Ddk _amount = new Ddk(0);
 
         protected DateTime _date = new DateTime();
 
         private Id<Transaction> _id = new Id<Transaction>();
 
-        protected Transaction(User user, DDK amount)
+        protected Transaction(User user, Ddk amount)
         {
             _user = user;
             _amount = amount;

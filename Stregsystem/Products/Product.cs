@@ -5,7 +5,7 @@ namespace src.Products
 {
     public class Product
     {
-        public DDK Price { get => _price; }
+        public Ddk Price { get => _price; }
 
         public bool IsActive { get => _IsActive; }
 
@@ -15,7 +15,7 @@ namespace src.Products
 
         private Name _name = new Name();
 
-        private DDK _price = new DDK(0);
+        private Ddk _price = new Ddk(0);
 
         private bool _IsActive = false;
 
@@ -26,7 +26,7 @@ namespace src.Products
             return _id + " " + _name.String + " " + _price.ToString();
         }
 
-        public Product(Name name, DDK price, bool isActive, bool canBeBoughtOnCredit)
+        public Product(Name name, Ddk price, bool isActive, bool canBeBoughtOnCredit)
         {
             _name = name;
             _price = price;

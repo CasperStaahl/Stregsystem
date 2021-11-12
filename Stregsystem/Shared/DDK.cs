@@ -1,8 +1,8 @@
 using System;
 
-namespace src.Shared
+namespace Stregsystem.Shared
 {
-    public class DDK
+    public class Ddk
     {
         protected decimal _numericValue = 0;
 
@@ -11,39 +11,39 @@ namespace src.Shared
             return $"{_numericValue.ToString()} DDK";
         }
 
-        public static bool operator <(DDK a, DDK b)
+        public static bool operator <(Ddk a, Ddk b)
         {
             return a._numericValue < b._numericValue;
         }
 
-        public static bool operator >(DDK a, DDK b)
+        public static bool operator >(Ddk a, Ddk b)
         {
             return a._numericValue > b._numericValue;
         }
 
-        public static bool operator <=(DDK a, DDK b)
+        public static bool operator <=(Ddk a, Ddk b)
         {
             return a._numericValue <= b._numericValue;
         }
 
-        public static bool operator >=(DDK a, DDK b)
+        public static bool operator >=(Ddk a, Ddk b)
         {
             return a._numericValue >= b._numericValue;
         }
 
-        public static DDK operator +(DDK a, DDK b)
+        public static Ddk operator +(Ddk a, Ddk b)
         {
             decimal newNumericValue = a._numericValue + b._numericValue;
-            return new DDK(newNumericValue);
+            return new Ddk(newNumericValue);
         }
 
-        public static DDK operator -(DDK a, DDK b)
+        public static Ddk operator -(Ddk a, Ddk b)
         {
             decimal newNumericValue = a._numericValue - b._numericValue;
-            return new DDK(newNumericValue);
+            return new Ddk(newNumericValue);
         }
 
-        public DDK(decimal numericValue)
+        public Ddk(decimal numericValue)
         {
             _numericValue = numericValue;
         }

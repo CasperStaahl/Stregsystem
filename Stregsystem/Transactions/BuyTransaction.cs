@@ -1,7 +1,7 @@
 using System;
 using src.Products;
-using src.Shared;
 using src.Users;
+using Stregsystem.Shared;
 
 namespace src.Transactions
 {
@@ -43,9 +43,9 @@ namespace src.Transactions
 
         private bool TransactionIsLegal()
         {
-            DDK userProxyBalance = _user.Balance;
+            Ddk userProxyBalance = _user.Balance;
             userProxyBalance = userProxyBalance - _amount;
-            bool baseTransactionIsLegal = _product.IsActive && (new DDK(0) <= userProxyBalance || _product.CanBeBoughtOnCredit);
+            bool baseTransactionIsLegal = _product.IsActive && (new Ddk(0) <= userProxyBalance || _product.CanBeBoughtOnCredit);
 
             if (_product is not SeasonalProduct)
             {
