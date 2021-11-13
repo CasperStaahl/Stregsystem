@@ -1,11 +1,13 @@
 using src.Shared;
 using Stregsystem.Shared;
 
-namespace src.Products
+namespace Stregsystem.Products
 {
     public class Product
     {
         public Ddk Price { get => _price; }
+
+        public Id<Product> Id { get => _id; }
 
         public bool IsActive { get => _IsActive; }
 
