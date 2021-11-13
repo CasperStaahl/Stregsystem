@@ -2,7 +2,7 @@
 using Stregsystem.Shared;
 using System;
 
-namespace src.Transactions
+namespace Stregsystem.Transactions
 {
     internal class InsertCashTransaction : Transaction
     {
@@ -17,6 +17,6 @@ namespace src.Transactions
             return $"Insert: {base.ToString()}";
         }
 
-        public InsertCashTransaction(User user, DateTime date, Ddk amount) : base(user, amount) { }
+        public InsertCashTransaction(User user, Ddk amount) : base(user, amount) { }
     }
 }
