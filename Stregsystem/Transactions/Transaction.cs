@@ -2,7 +2,7 @@ using System;
 using src.Users;
 using Stregsystem.Shared;
 
-namespace src.Transactions
+namespace Stregsystem.Transactions
 {
     internal abstract class Transaction
     {
