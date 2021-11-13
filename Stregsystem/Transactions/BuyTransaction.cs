@@ -1,9 +1,11 @@
 using System;
 using src.Products;
+using src.Transactions;
 using src.Users;
+using Stregsystem.Products;
 using Stregsystem.Shared;
 
-namespace src.Transactions
+namespace Stregsystem.Transactions
 {
     internal class BuyTransaction : Transaction
     {
