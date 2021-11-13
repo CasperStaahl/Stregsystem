@@ -1,35 +1,42 @@
 using System;
 using System.Collections.Generic;
-using System.Transactions;
-using src.Products;
+using Stregsystem.Transactions;
 using src.Users;
 using Stregsystem.Shared;
+using Stregsystem.Products;
 
 namespace Stregsystem
 {
-    internal class Stregsystem 
+    internal class Stregsystem
     {
         // private IEnumerable<Product> ActiveProducts { get; set; } 
-        
+
+        private List<Product> _products = new List<Product>();
+
+        private List<Transaction> _transactions = new List<Transaction>();
+
         private void BuyProduct(User user, Product product)
         {
-            throw new NotImplementedException();
+            Transaction transaction = new BuyTransaction(user, product);
+            ExecuteTransaction(transaction);
         }
 
         private void AddCreditToAccount(User user, Ddk amount)
         {
-            throw new NotImplementedException();
+            Transaction transaction = new InsertCashTransaction(user, amount);
+            ExecuteTransaction(transaction);
         }
 
         private void ExecuteTransaction(Transaction transaction)
         {
-            throw new NotImplementedException();
+            transaction.Execute();
+            _transactions.Add(transaction);
         }
 
-        private IEnumerable<Product> GetProductById(Id<Product> id)
+        private Product GetProductById(int idNumber)
         {
-            throw new NotImplementedException();
-        } 
+            return _products.Find(x => x.Id.Number == idNumber);
+        }
 
         private IEnumerable<User> GetUsers(Func<User, bool> predicate)
         {
@@ -46,5 +53,5 @@ namespace Stregsystem
             throw new NotImplementedException();
         }
     }
-    
+
 }
