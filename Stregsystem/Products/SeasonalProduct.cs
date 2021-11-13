@@ -1,5 +1,6 @@
 using System;
 using src.Shared;
+using Stregsystem.Products;
 using Stregsystem.Shared;
 
 namespace src.Products
