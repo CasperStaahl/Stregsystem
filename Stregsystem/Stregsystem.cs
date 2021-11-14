@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using Stregsystem.Transactions;
-using src.Users;
 using Stregsystem.Shared;
 using Stregsystem.Products;
+using Stregsystem.Users;
 
 namespace Stregsystem
 {
@@ -11,9 +11,13 @@ namespace Stregsystem
     {
         // private IEnumerable<Product> ActiveProducts { get; set; } 
 
+        public IEnumerable<Product> ActiveProducts { get; } 
+
         private List<Product> _products = new List<Product>();
 
         private List<Transaction> _transactions = new List<Transaction>();
+
+        private List<User> _users = new List<User>();
 
         private void BuyProduct(User user, Product product)
         {
@@ -35,23 +39,38 @@ namespace Stregsystem
 
         private Product GetProductById(int idNumber)
         {
-            return _products.Find(x => x.Id.Number == idNumber);
+            List<Product> found = _products.FindAll(x => x.Id.Number == idNumber);
+            if (0 < found.Count)
+            {
+                return found[0];
+            }
+            else
+            {
+                throw new ProductDoesNotExistException($"product with id {idNumber} does not exist");
+            }
         }
 
-        private IEnumerable<User> GetUsers(Func<User, bool> predicate)
+        private IEnumerable<User> GetUsers(Predicate<User> predicate)
         {
-            throw new NotImplementedException();
+            return _users.FindAll(predicate);
         }
 
         private User GetUserByUsername(Username username)
         {
-            throw new NotImplementedException();
+            List<User> found = _users.FindAll(x => username.ToString() == x.Username.ToString());
+            if (0 < found.Count)
+            {
+                return found[0];
+            }
+            else
+            {
+                throw new UserDoesNotExistException($"user with username {username.ToString()} does not exist");
+            }
         }
 
         private IEnumerable<Transaction> GetTransactions(User user, int count)
         {
-            throw new NotImplementedException();
+            return _transactions.FindAll(x => x.User == user);
         }
     }
-
 }
