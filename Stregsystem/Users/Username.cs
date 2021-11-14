@@ -1,7 +1,7 @@
 using System;
 using System.Text.RegularExpressions;
 
-namespace src.Users
+namespace Stregsystem.Users
 {
     public class Username
     {
@@ -9,7 +9,7 @@ namespace src.Users
 
         public string String
         {
-            get { return _string; }
+            private get { return _string; }
             set
             {
                 if (_validator.IsMatch(value))
@@ -24,5 +24,10 @@ namespace src.Users
         }
 
         private string _string = "nil";
+
+        public override string ToString()
+        {
+            return _string;
+        }
     }
 }
