@@ -1,9 +1,9 @@
 using System;
 using src.Products;
 using src.Transactions;
-using src.Users;
 using Stregsystem.Products;
 using Stregsystem.Shared;
+using Stregsystem.Users;
 
 namespace Stregsystem.Transactions
 {
