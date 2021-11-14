@@ -1,11 +1,13 @@
 using System;
-using src.Users;
 using Stregsystem.Shared;
+using Stregsystem.Users;
 
 namespace Stregsystem.Transactions
 {
     internal abstract class Transaction
     {
+        public User User { get => _user;}
+
         protected User _user;
 
         protected Ddk _amount = new Ddk(0);
