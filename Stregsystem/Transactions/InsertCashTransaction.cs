@@ -1,5 +1,5 @@
-﻿using src.Users;
-using Stregsystem.Shared;
+﻿using Stregsystem.Shared;
+using Stregsystem.Users;
 using System;
 
 namespace Stregsystem.Transactions
