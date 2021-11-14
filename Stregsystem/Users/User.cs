@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Net.Mail;
 using src.Shared;
+using Stregsystem.Users;
 using Stregsystem.Shared;
 
-namespace src.Users
+namespace Stregsystem.Users
 {
     public class User : IComparable<User>
     {
@@ -19,7 +20,7 @@ namespace src.Users
 
         // public MailAddress Email { get => _email; }
 
-        // public Username Username { get => _userName; }
+        public Username Username { get => _userName; }
 
         public Ddk Balance
         {
