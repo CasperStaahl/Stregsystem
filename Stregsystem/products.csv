@@ -1,0 +1,136 @@
+id;name;price;active;deactivate_date
+1;Diverse;100;0;
+2;"½L Letmælk";450;0;
+3;"¼L Letmælk";250;0;
+4;"¼L Skummetmælk";225;0;
+5;"¼L Kærnemælk";225;0;
+6;"¼L Øko Letmælk";275;0;
+7;"¼L Øko Skummetmælk";250;0;
+8;"½L Skummetmælk (2x¼)";375;0;
+9;"1L Letmælk";600;0;
+10;"½L Kærnemælk (2x¼)";525;0;
+11;"½L vand & kildevand excl. pant";1200;1;
+12;"¼L Sodavand";500;0;
+13;"Øl(f.eks. Thy, Guld, 47, T-FF)";1000;1;
+14;Øl(Tuborg/Classic/Carlsberg/Rød);650;1;
+15;"Øl(Staropramen, Corona, Budweis)";1500;1;
+16;Cocio;1600;1;
+17;"½L Matilde cacao";1350;0;
+18;"¼L Øko Sødmælk";300;0;
+19;"½L Øko Skummet (2x¼)";475;0;
+20;"150ml Cultura";600;0;
+21;"200ml Mathilde Cacao";275;0;
+22;"1 Flaske Rødvin";5000;0;
+23;"1 Flaske Hvidvin";2500;0;
+24;"150ml Yoghurt";600;0;
+25;"¼L Øko Sødmælk";275;0;
+26;Popcorn;500;0;
+27;<h2>Chips</h2>;1500;1;
+28;Saltstænger;600;0;
+29;"Øl(Tuborg Jul/Påske)";650;1;
+30;Jolt;1000;0;
+31;"Pant (1/2L flaske)";150;1;
+32;"Kaffe/Choko(1 kop)";300;1;
+33;dummyproduct;2000;0;
+34;Nestea;1300;1;
+35;"kaffe - ansat";1125;0;
+36;"kaffe - stud";750;0;
+37;"½L Vand incl. pant";1350;1;
+38;Juice;1200;0;
+39;"Ansat KAFFE(1 kop)";0;0;
+40;"Frisk luft v. BSS";100;0;"2007-12-24 20:00:01"
+41;<h1>Snaps</h1>;10000;0;
+42;Limfjordsporter;900;0;
+43;"½L drikkecultura";1500;0;
+44;Søm;500;0;
+45;"¼L Mælk";275;0;
+46;<h3>F-Julefrokost<h3/>;11100;0;
+47;"Carlsberg 47";800;0;
+48;F-sportsdag;1500;0;"2013-05-10 13:00:00"
+49;"Kandidat betaling";50000;0;
+50;"Kandidatfest - gæst";15000;0;
+51;"<h2> Fyttetur </h2>";33300;0;
+52;Chokoladebar;1000;0;
+53;Fisherman;12000;0;
+54;"Ale No. 16";950;0;
+55;"Kort fyttetur - 2 dage";22200;0;
+56;FØLsmagning;10000;0;
+57;"F-bog (Se E1-214)";1500;0;
+58;"Slik, Haribo";800;0;
+59;"Rustfri stålvogn";250000;0;
+60;"Indoor footballsæson";5000;0;
+61;F-acking;0;0;
+62;"F-Klub krus";5000;0;
+63;Drink;2000;0;
+64;"<b>1 flaske vin</b>";3000;0;"2008-12-06 12:00:00"
+65;"<h3>Fadøl - Tuborg/Classic</h3>";1300;0;
+66;"<h3>Fadøl - Julebryg</h3>";2100;0;
+67;"Poelse med broed";800;0;
+68;"Fransk Hotdog";1000;0;"2008-05-31 00:00:00"
+1767;Somersby/Xide;1500;0;
+1768;Æblemost;500;0;
+1769;"Æblemost m. en enkelt";800;0;
+1770;"Æblemost m. dobbelt";1500;0;
+1771;"Island <blink><b>TILBUD!</blink>";50000;0;
+1772;"Adm Gebyr";2000;0;
+1773;"KB Juleøl (hvidtøl)";450;0;
+1774;"F (oel)";900;0;
+1775;"Fadøl i personligt glas";1500;0;
+1776;"Dåseøl (Guinness & Kilkenny)";1650;1;
+1777;Lager/Special/Elefant;1000;0;
+1778;<h2>Feaster</h2>;4500;1;"2015-03-25 15:30:00"
+1779;<b>2xJuleøl</b>;1000;0;"2009-04-25 03:00:00"
+1780;"Limfjordsporter Fad";1700;0;
+1781;Famlefest;30000;0;"2009-09-14 12:20:46"
+1782;"Special Hyttetur";12500;0;"2009-10-06 16:20:00"
+1783;"Øko Humle/Porse Guld/Øko Påske";1000;0;
+1784;"Æ Kas Kurwand";23100;0;
+1785;"Bingo Plader";1000;0;"2009-11-28 08:51:56"
+1786;"3x Bingo Plader";2500;0;"2009-11-28 08:52:27"
+1787;"Burn Shot";1400;0;
+1789;Fames;1000;0;"2014-10-08 23:59:00"
+1790;"<b>Red Bull</b>";1500;0;
+1791;"Cult Cola / Cult";1200;0;
+1792;"<h2>F-sportsdag + gris</h2>";5500;0;"2014-05-07 15:00:00"
+1793;"<b>ØKO Humle</b>";850;0;
+1794;"<b>Tuborg Lime Cut</b>";800;0;
+1795;"<b>Schweppes Ginger Ale</b>";550;0;
+1796;"<b>Budget Juice (250 ml)</b>";400;0;
+1797;Fastelavn;1500;0;
+1798;<b>BEO*/Copenhagen</b>;1100;0;
+1799;"One EngergyDrink";900;0;
+1800;<b>X-Ray</b>;700;0;
+1801;"F-Kult Meat Pie";4800;0;"2011-05-27 08:00:00"
+1802;"morgan + cola";500;0;"2011-10-10 10:59:17"
+1803;"Fadøl normal/påske (sw system)";1100;0;
+1804;"Burn Energy";1500;1;
+1805;Fragelse;6900;0;
+1806;Vodka;500;0;
+1807;"Julemumme - Kongens Bryghus";3600;0;
+1808;"Jakobsen - Golden naked (Tilbud)";1000;0;
+1809;"Carlsberg Christmas Ale";3100;0;
+1811;"Gratis FooBar";0;0;
+1812;Ølkrus;2000;0;
+1813;"HARBOE - ½L Vand excl. pant";500;0;
+1814;"Juice 1,5L";1500;1;
+1815;"Kakao 1L";1000;0;
+1816;"Juice 1,5L";1200;0;
+1817;Gin;500;0;
+1819;<h1>FredagsFranskbrød</h1>;0;0;
+1820;"Fadøl(Jul) i personligt glas";1750;0;
+1821;"24 x 0,5 L sodavand uden pant";28800;0;
+1822;"Corona Extra & Franziskaner Dunk";1500;0;
+1823;"Budget kildevand incl. pant";600;0;
+1824;<b>F-dag</b>;500;0;"2014-03-15 12:30:00"
+1825;"<h2>Fadøl i kande (2 L)</h2>";6000;0;
+1826;Snack;500;1;
+1827;"Konsulent for en aften";0;0;
+1829;"<h2> Brød </h2>";500;0;
+1830;<b>F-LAN</b>;4000;0;"2015-03-17 12:00:00"
+1831;"Cider ";1500;1;
+1832;"<h2>Alkohol (Snaps/shots)</h2>";10000;0;
+1833;"<h2>1,5L vand excl. pant</h2>";1200;1;
+1834;"Kamstrup Foobar";0;0;"2014-10-31 09:00:00"
+1835;"FLAN Sandwich lørdag frokost";3500;1;"2015-03-19 14:30:00"
+1836;"FLAN Chili con Carne Fredag afte";5000;1;"2015-03-19 14:30:00"
+1837;<h2>Monster</h2>;1200;1;
