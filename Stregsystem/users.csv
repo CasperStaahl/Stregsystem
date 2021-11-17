@@ -1,0 +1,10 @@
+id,firstname,lastname,username,balance,email
+1,Nancy,Davolio,ndavo,40000,ndavo@sample.stregsystem.dk
+2,Andrew,Fuller,afull,32900,afull@sample.stregsystem.dk
+3,Janet,Leverling,jleve,5050,jleve@sample.stregsystem.dk
+4,Margaret,Peacock,mpeac,10000,mpeac@sample.stregsystem.dk
+5,Steven,Buchanan,sbuch,400,sbuch@sample.stregsystem.dk
+6,Michael,Suyama,msuya,50,msuya@sample.stregsystem.dk
+7,Robert,King,rking,-1000,rking@sample.stregsystem.dk
+10,Laura,Callahan,lcall,103000,lcall@sample.stregsystem.dk
+11,Anne,Dodsworth,adods,0,adods@sample.stregsystem.dk
