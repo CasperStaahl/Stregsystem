@@ -1,4 +1,3 @@
-using src.Shared;
 using Stregsystem.Shared;
 
 namespace Stregsystem.Products
@@ -13,9 +12,9 @@ namespace Stregsystem.Products
 
         public bool CanBeBoughtOnCredit { get => _canBeBoughtOnCredit; }
 
-        private Id<Product> _id = new Id<Product>();
+        private Id<Product> _id;
 
-        private Name _name = new Name();
+        private Name _name;
 
         private Ddk _price = new Ddk(0);
 
@@ -28,8 +27,9 @@ namespace Stregsystem.Products
             return _id + " " + _name.String + " " + _price.ToString();
         }
 
-        public Product(Name name, Ddk price, bool isActive, bool canBeBoughtOnCredit)
+        public Product(Id<Product> id, Name name, Ddk price, bool isActive, bool canBeBoughtOnCredit)
         {
+            _id = id;
             _name = name;
             _price = price;
             _IsActive = isActive;
