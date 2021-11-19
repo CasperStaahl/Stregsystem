@@ -1,5 +1,4 @@
 using System;
-using src.Shared;
 using Stregsystem.Products;
 using Stregsystem.Shared;
 
@@ -42,9 +41,9 @@ namespace src.Products
         private DateTime _seasonStartDate = new DateTime();
         private DateTime _seasonEndDate = new DateTime();
 
-        public SeasonalProduct(Name name, Ddk price, bool active, bool canBeBoughtOnCredit,
+        public SeasonalProduct(Id<Product> id, Name name, Ddk price, bool active, bool canBeBoughtOnCredit,
         DateTime seasonStartDate, DateTime seasonEndDate)
-        : base(name, price, active, canBeBoughtOnCredit)
+        : base(id, name, price, active, canBeBoughtOnCredit)
         {
             _seasonStartDate = seasonStartDate;
             _seasonEndDate = seasonEndDate;
