@@ -29,5 +29,10 @@ namespace Stregsystem.Users
         {
             return _string;
         }
+
+        public Username(string nameString)
+        {
+            String = nameString;
+        }
     }
 }
