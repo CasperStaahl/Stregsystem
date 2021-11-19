@@ -6,7 +6,9 @@ namespace Stregsystem
     {
         private static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Stregsystem stregsystem = new Stregsystem(
+                @"../../../products.csv", 
+                @"../../../users.csv");
         }
     }
 }
