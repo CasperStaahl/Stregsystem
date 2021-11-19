@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Net.Mail;
-using src.Shared;
 using Stregsystem.Users;
 using Stregsystem.Shared;
 
@@ -33,15 +32,15 @@ namespace Stregsystem.Users
             }
         }
 
-        private Id<User> _id = new Id<User>();
+        private Id<User> _id;
 
-        private Name _firstName = new Name();
+        private Name _firstName;
 
-        private Name _lastName = new Name();
+        private Name _lastName;
 
         private MailAddress _email = new MailAddress("nil@nil");
 
-        private Username _userName = new Username();
+        private Username _userName;
 
         private Ddk _balance = new Ddk(0);
 
@@ -78,10 +77,13 @@ namespace Stregsystem.Users
             handler?.Invoke(this, e);
         }
 
-        public User(Name firstName, Name lastName, MailAddress email, Username username)
+        public User(Id<User> id, Name firstName, Name lastName, Username username, Ddk balance, MailAddress email)
         {
+            _id = id;
+            _userName = username;
             _firstName = firstName;
             _lastName = lastName;
+            _balance = balance;
             _email = email;
         }
     }
