@@ -6,6 +6,7 @@ using Stregsystem.Products;
 using Stregsystem.Users;
 using System.Linq;
 using System.IO;
+using System.Net.Mail;
 
 namespace Stregsystem
 {
@@ -74,12 +75,53 @@ namespace Stregsystem
             {
                 string[] subs = line.Split(';');
 
-                // Product product = new Product();
+                string idString = subs[0];
+                int idInt = Convert.ToInt32(idString);
+                Id<Product> id = new Id<Product>(idInt);
                 
+                string nameString = subs[1];
+                Name name = new Name(nameString);
+                
+                string priceString = subs[2];
+                int priceInt = Convert.ToInt32(priceString);
+                Ddk price = new Ddk(priceInt);
+
+                string isActiveString = subs[3];
+                int isActiveInt = Convert.ToInt32(isActiveString);
+                bool isActive = Convert.ToBoolean(isActiveInt);
+
+                Product product = new Product(id, name, price, isActive, false);
+                _products.Add(product);
             }
 
             // For each line in the userFile add a user object to _users
+            foreach (string line in File.ReadLines(userFileAddress).Skip(1))
+            {
+                string[] subs = line.Split(',');
 
+                string idString = subs[0];
+                int idInt = Convert.ToInt32(idString);
+                Id<User> id = new Id<User>(idInt);
+                
+                string firstNameString = subs[1];
+                Name firstName = new Name(firstNameString);
+
+                string lastNameString = subs[2];
+                Name lastName = new Name(firstNameString);
+
+                string usernameString = subs[3];
+                Username username = new Username(usernameString);
+
+                string balanceString = subs[4];
+                int balanceInt = Convert.ToInt32(balanceString);
+                Ddk balance = new Ddk(balanceInt);
+                
+                string emailString = subs[5];
+                MailAddress email = new MailAddress(emailString);
+
+                User user = new User(id, firstName, lastName, username, balance, email);
+                _users.Add(user);
+            }
         }
     }
 }
