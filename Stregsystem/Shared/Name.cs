@@ -1,13 +1,13 @@
 using System;
 
-namespace src.Shared
+namespace Stregsystem.Shared
 {
     public class Name
     {
         public string String
         {
             get { return _string; }
-            set
+            private set
             {
                 if (value != null)
                 {
@@ -21,5 +21,10 @@ namespace src.Shared
         }
 
         private string _string = "nil";
+
+        public Name(string nameString)
+        {
+            String = nameString;
+        }
     }
 }
