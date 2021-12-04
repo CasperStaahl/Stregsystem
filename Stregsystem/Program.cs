@@ -6,9 +6,13 @@ namespace Stregsystem
     {
         private static void Main(string[] args)
         {
-            Stregsystem stregsystem = new Stregsystem(
+            IStregsystem stregsystem = new Stregsystem(
                 @"../../../products.csv", 
                 @"../../../users.csv");
+            IStregsystemUI ui = new StregsystemCLI(stregsystem);
+            StregsystemController sc = new StregsystemController(ui, stregsystem);
+
+            ui.Start();
         }
     }
 }
