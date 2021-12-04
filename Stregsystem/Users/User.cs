@@ -28,7 +28,7 @@ namespace Stregsystem.Users
             {
                 _balance = value;
                 if (_balance < _balanceThreshold)
-                    OnBelowBalanceThreshold(new EventArgs());
+                    OnBelowBalanceThreshold(EventArgs.Empty);
             }
         }
 
