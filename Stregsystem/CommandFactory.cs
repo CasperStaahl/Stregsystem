@@ -107,8 +107,11 @@ namespace Stregsystem
                               string verb, 
                               List<string> nouns)
         {
-
-
+            int productId = Int32.Parse(nouns[0]);
+            if (nouns.Count() <= 1)
+                return new productCommandConstructor(_stregsystem, _ui, productId);
+            else
+                throw new TooManyArgumentsException();
         }
 
         private ICommand ParseQuit(IEnumerable<string> nouns)
