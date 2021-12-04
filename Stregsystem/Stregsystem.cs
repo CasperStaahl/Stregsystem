@@ -56,8 +56,7 @@ namespace Stregsystem
                 string[] subs = line.Split(',');
 
                 string idString = subs[0];
-                int idInt = Convert.ToInt32(idString);
-                Id<User> id = new Id<User>(idInt);
+                int id = Convert.ToInt32(idString);
 
                 string firstNameString = subs[1];
                 Name firstName = new Name(firstNameString);

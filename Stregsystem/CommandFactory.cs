@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Stregsystem.Shared;
+using Stregsystem.Users;
 
 namespace Stregsystem
 {
@@ -61,10 +63,10 @@ namespace Stregsystem
 
         private ICommand ParseAddCredit(List<string> nouns)
         { 
-            string userName = nouns[0];
-            string credit = nouns[1];
+            Username username = new Username(nouns[0]) ;
+            Ddk credit = new Ddk(Int32.Parse(nouns[1]));
             if (nouns.Count() <= 2)
-                return new AddCreditCommand(_stregsystem, ui, userName, credit);
+                return new AddCreditCommand(_stregsystem, ui, username, credit);
             else
                 throw new TooManyArgumentsException();
         }
