@@ -24,7 +24,7 @@ namespace Stregsystem.Products
 
         public override string ToString()
         {
-            return _id + " " + _name.String + " " + _price.ToString();
+            return _id.Number + " " + _name.String + " " + _price.ToString();
         }
 
         public Product(Id<Product> id, Name name, Ddk price, bool isActive, bool canBeBoughtOnCredit)
