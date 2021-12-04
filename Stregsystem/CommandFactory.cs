@@ -8,16 +8,6 @@ namespace Stregsystem
 {
     internal class CommandFactory
     {
-        private static Dictionary<string, ICommand> _stringToCommand = new()
-        {
-            { ":quit", StopUIComand },
-            { ":q", StopUICommand },
-            { ":activate", ActivateProductCommand },
-            { ":deactivate", DeactivateProductCommand },
-            { ":crediton,", CreditOnCommand },
-            { ":creditoff", CreditOffCommand },
-            { ":addcredits", AddCreditsCommand }
-        };
         private IStregsystemUI _ui;
         private IStregsystem _stregsystem;
 
@@ -52,13 +42,19 @@ namespace Stregsystem
                 case ":addcredit":
                     return ParseAddCredit(nouns);
                 default:
-                    return ParseUserRequst(verb, nouns);
+                    return ParseUserRequest(verb, nouns);
             }
         }
 
-        private ICommand ParseUserRequst(string verb, List<string> nouns)
+        private ICommand ParseUserRequest(string verb, List<string> nouns)
         {
-            throw new NotImplementedException();
+            Username username = new Username(nouns[0]);
+            List<int> productIdList = nouns.Select(x => Int32.Parse(x)).ToList();
+
+            if (nouns.Count <= 0)
+                return new GetUserInformatioCommand(_stregsystem, _ui, username );
+            else
+                return new BuyCommand(_stregsystem, _ui, username);
         }
 
         private ICommand ParseAddCredit(List<string> nouns)
@@ -66,7 +62,7 @@ namespace Stregsystem
             Username username = new Username(nouns[0]) ;
             Ddk credit = new Ddk(Int32.Parse(nouns[1]));
             if (nouns.Count() <= 2)
-                return new AddCreditCommand(_stregsystem, ui, username, credit);
+                return new AddCreditCommand(_stregsystem, _ui, username, credit);
             else
                 throw new TooManyArgumentsException();
         }
@@ -107,53 +103,19 @@ namespace Stregsystem
                 throw new TooManyArgumentsException();
         }
 
-        private ICommand ParseQuit(string verb, IEnumerable<string> nouns)
+        private ICommand Temp(Func<IStregsystem, IStregsystemUI, int, ICommand> productCommandConstructor, 
+                              string verb, 
+                              List<string> nouns)
+        {
+
+
+        }
+
+        private ICommand ParseQuit(IEnumerable<string> nouns)
         {
             if (nouns.Count() <= 0)
                 return new QuitCommand(_ui);
             throw new TooManyArgumentsException();
         }
-        // if the verb is :quit or :q and there are no nouns
-        // return quit command
-
-        // else if the verb is :activate and there are one noun and the noun is a product id
-        // return activate command
-
-        // else if the verb is :deactivate and there are one noun and the noun is a product id
-        // return deactivate command
-
-        // else if the verb is :crediton and there are one noun and the noun is a product id
-        // return crediton command
-
-        // else if the verb is :creditoff and there are one noun and the noun a product id 
-        // return creditoff command
-
-        // else if the verb is :adcredit and there are two nouns and the first noun is a 
-        // username and the second noun is a number.
-        // return add credits command
-
-        // else if the verb is a user
-        // if there are no nouns retun get user information command
-        // else if there are several nouns and the nouns are products id
-        // return buy command
-
-
-
-
-
-
-
-
-    }
-
-    [System.Serializable]
-    public class TooManyArgumentsException : System.Exception
-    {
-        public TooManyArgumentsException() { }
-        public TooManyArgumentsException(string message) : base(message) { }
-        public TooManyArgumentsException(string message, System.Exception inner) : base(message, inner) { }
-        protected TooManyArgumentsException(
-            System.Runtime.Serialization.SerializationInfo info,
-            System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
     }
 }
