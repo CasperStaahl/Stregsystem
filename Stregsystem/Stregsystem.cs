@@ -10,8 +10,10 @@ using System.Net.Mail;
 
 namespace Stregsystem
 {
-    internal class Stregsystem
+    internal class Stregsystem : IStregsystem
     {
+        public event EventHandler<User> UserBalanceBelowThreshold;
+
         public IEnumerable<Product> ActiveProducts { get => _products.FindAll(x => x.IsActive); }
 
         private List<Product> _products = new List<Product>();
@@ -19,52 +21,6 @@ namespace Stregsystem
         private List<Transaction> _transactions = new List<Transaction>();
 
         private List<User> _users = new List<User>();
-
-        private void BuyProduct(User user, Product product)
-        {
-            Transaction transaction = new BuyTransaction(user, product);
-            ExecuteTransaction(transaction);
-        }
-
-        private void AddCreditToAccount(User user, Ddk amount)
-        {
-            Transaction transaction = new InsertCashTransaction(user, amount);
-            ExecuteTransaction(transaction);
-        }
-
-        private void ExecuteTransaction(Transaction transaction)
-        {
-            transaction.Execute();
-            _transactions.Add(transaction);
-        }
-
-        private Product GetProductById(int idNumber)
-        {
-            List<Product> found = _products.FindAll(x => x.Id.Number == idNumber);
-            if (0 < found.Count)
-                return found[0];
-            else
-                throw new ProductDoesNotExistException($"product with id {idNumber} does not exist");
-        }
-
-        private IEnumerable<User> GetUsers(Predicate<User> predicate)
-        {
-            return _users.FindAll(predicate);
-        }
-
-        private User GetUserByUsername(Username username)
-        {
-            List<User> found = _users.FindAll(x => username.ToString() == x.Username.ToString());
-            if (0 < found.Count)
-                return found[0];
-            else
-                throw new UserDoesNotExistException($"user with username {username.ToString()} does not exist");
-        }
-
-        private IEnumerable<Transaction> GetTransactions(User user, int count)
-        {
-            return _transactions.FindAll(x => x.User == user).Take(count);
-        }
 
         // This constructur will instantiate a Stregsystem given two file addresses. 
         // If either Address is invalid it will throw an error.
@@ -78,10 +34,10 @@ namespace Stregsystem
                 string idString = subs[0];
                 int idInt = Convert.ToInt32(idString);
                 Id<Product> id = new Id<Product>(idInt);
-                
+
                 string nameString = subs[1];
                 Name name = new Name(nameString);
-                
+
                 string priceString = subs[2];
                 int priceInt = Convert.ToInt32(priceString);
                 Ddk price = new Ddk(priceInt);
@@ -102,7 +58,7 @@ namespace Stregsystem
                 string idString = subs[0];
                 int idInt = Convert.ToInt32(idString);
                 Id<User> id = new Id<User>(idInt);
-                
+
                 string firstNameString = subs[1];
                 Name firstName = new Name(firstNameString);
 
@@ -115,13 +71,72 @@ namespace Stregsystem
                 string balanceString = subs[4];
                 int balanceInt = Convert.ToInt32(balanceString);
                 Ddk balance = new Ddk(balanceInt);
-                
+
                 string emailString = subs[5];
                 MailAddress email = new MailAddress(emailString);
 
                 User user = new User(id, firstName, lastName, username, balance, email);
-                _users.Add(user);
+                user.BelowBalanceThreshold += OnUserBalanceBelowThreshold;
             }
+        }
+
+        protected virtual void OnUserBalanceBelowThreshold(object user, EventArgs e)
+        {
+            EventHandler<User> handler = UserBalanceBelowThreshold;
+            handler?.Invoke(this, (User)user);
+        }
+
+        public void BuyProduct(User user, Product product)
+        {
+            Transaction transaction = new BuyTransaction(user, product);
+            ExecuteTransaction(transaction);
+        }
+
+        public void AddCreditToAccount(User user, Ddk amount)
+        {
+            Transaction transaction = new InsertCashTransaction(user, amount);
+            ExecuteTransaction(transaction);
+        }
+
+        public Product GetProductById(int idNumber)
+        {
+            List<Product> found = _products.FindAll(x => x.Id.Number == idNumber);
+            if (0 < found.Count)
+                return found[0];
+            else
+                throw new ProductDoesNotExistException($"product with id {idNumber} does not exist");
+        }
+
+        public IEnumerable<User> GetUsers(Predicate<User> predicate)
+        {
+            return _users.FindAll(predicate);
+        }
+
+        public User GetUserByUsername(Username username)
+        {
+            List<User> found = _users.FindAll(x => username.ToString() == x.Username.ToString());
+            if (0 < found.Count)
+                return found[0];
+            else
+                throw new UserDoesNotExistException($"user with username {username.ToString()} does not exist");
+        }
+
+        public IEnumerable<Transaction> GetTransactions(User user, int count)
+        {
+            return _transactions.FindAll(x => x.User == user).Take(count);
+        }
+
+        private void ExecuteTransaction(Transaction transaction)
+        {
+            transaction.Execute();
+            _transactions.Add(transaction);
+            log(transaction);
+        }
+
+        private void log(Transaction transaction)
+        {
+            using StreamWriter sw = File.AppendText("TransactionLog.txt");
+            sw.WriteLine(transaction.ToString());
         }
     }
 }
