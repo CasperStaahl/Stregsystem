@@ -41,7 +41,7 @@ namespace src.Products
         private DateTime _seasonStartDate = new DateTime();
         private DateTime _seasonEndDate = new DateTime();
 
-        public SeasonalProduct(Id<Product> id, Name name, Ddk price, bool active, bool canBeBoughtOnCredit,
+        public SeasonalProduct(int id, Name name, Ddk price, bool active, bool canBeBoughtOnCredit,
         DateTime seasonStartDate, DateTime seasonEndDate)
         : base(id, name, price, active, canBeBoughtOnCredit)
         {
