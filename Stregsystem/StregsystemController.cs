@@ -12,7 +12,7 @@ namespace Stregsystem
 
         private void TryExecuteCommand(object sender, string e)
         {
-            ICommand command = _commandFactory.ParseCommand(e);
+            ICommand command = _commandFactory.Parse(e);
             command.Execute();
         }
     }
