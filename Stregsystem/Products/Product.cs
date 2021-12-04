@@ -27,9 +27,9 @@ namespace Stregsystem.Products
             return _id.Number + " " + _name.String + " " + _price.ToString();
         }
 
-        public Product(Id<Product> id, Name name, Ddk price, bool isActive, bool canBeBoughtOnCredit)
+        public Product(int id, Name name, Ddk price, bool isActive, bool canBeBoughtOnCredit)
         {
-            _id = id;
+            _id = new Id<Product>(id);
             _name = name;
             _price = price;
             _IsActive = isActive;
