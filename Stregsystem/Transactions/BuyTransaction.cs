@@ -30,7 +30,8 @@ namespace Stregsystem.Transactions
             }
             else if (!_product.CanBeBoughtOnCredit)
             {
-                throw new InsufficientCredistException($"{_user.ToString()} does not have enough credit to buy {_product.ToString()}");
+                throw new InsufficientCredistException
+                    ($"{_user.ToString()} does not have enough credit to buy {_product.ToString()}");
             }
             else
             {
@@ -47,7 +48,8 @@ namespace Stregsystem.Transactions
         {
             Ddk userProxyBalance = _user.Balance;
             userProxyBalance = userProxyBalance - _amount;
-            bool baseTransactionIsLegal = _product.IsActive && (new Ddk(0) <= userProxyBalance || _product.CanBeBoughtOnCredit);
+            bool baseTransactionIsLegal = 
+                _product.IsActive && (new Ddk(0) <= userProxyBalance || _product.CanBeBoughtOnCredit);
 
             if (_product is not SeasonalProduct)
             {
@@ -56,7 +58,8 @@ namespace Stregsystem.Transactions
             else if (_product is SeasonalProduct)
             {
                 SeasonalProduct product = _product as SeasonalProduct;
-                return baseTransactionIsLegal && product.SeasonStartDate < DateTime.Now && DateTime.Now < product.SeasonEndDate;
+                return baseTransactionIsLegal && product.SeasonStartDate < DateTime.Now 
+                                              && DateTime.Now < product.SeasonEndDate;
             }
             else
             {
