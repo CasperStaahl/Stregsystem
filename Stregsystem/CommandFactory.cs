@@ -38,7 +38,7 @@ namespace Stregsystem
             switch (verb)
             {
                 case ":q" or ":quit":
-                    return ParseQuit(verb, nouns);
+                    return ParseQuit(nouns);
                 case ":activate":
                     return ParseActivate(verb, nouns);
                 case ":deactivate":
@@ -46,9 +46,9 @@ namespace Stregsystem
                 case ":crediton":
                     return ParseCreditOn(verb, nouns);
                 case ":creditoff":
-                    return ParseCreditOff(verb, nouns);
+                    return ParseCreditOff(nouns);
                 case ":addcredit":
-                    return ParseAddCredit(verb, nouns);
+                    return ParseAddCredit(nouns);
                 default:
                     return ParseUserRequst(verb, nouns);
             }
@@ -56,49 +56,60 @@ namespace Stregsystem
 
         private ICommand ParseUserRequst(string verb, List<string> nouns)
         {
-            if (nouns.Count() == 0)
-                return new QuitCommand(_ui);
-            else
-                throw new Exception();
+            throw new NotImplementedException();
         }
 
-        private ICommand ParseAddCredit(string verb, List<string> nouns)
+        private ICommand ParseAddCredit(List<string> nouns)
         { 
-            if (nouns.Count == 2)
-            {
-                string userName = nouns[0];
-                string credit = nouns[1];
+            string userName = nouns[0];
+            string credit = nouns[1];
+            if (nouns.Count() <= 2)
                 return new AddCreditCommand(_stregsystem, ui, userName, credit);
-            }
             else
-            {
-                throw new Exception();
-            }
+                throw new TooManyArgumentsException();
         }
 
-        private ICommand ParseCreditOff(string verb, IEnumerable<string> nouns)
+        private ICommand ParseCreditOff(List<string> nouns)
         {
-            throw new NotImplementedException();
+            int productId = Int32.Parse(nouns[0]);
+            if (nouns.Count() <= 1)
+                return new CreditOffCommand(_stregsystem, _ui, productId);
+            else
+                throw new TooManyArgumentsException();
         }
 
-        private ICommand ParseCreditOn(string verb, IEnumerable<string> nouns)
+        private ICommand ParseCreditOn(string verb, List<string> nouns)
         {
-            throw new NotImplementedException();
+            int productId = Int32.Parse(nouns[0]);
+            if (nouns.Count() <= 1)
+                return new CreditOnCommand(_stregsystem, _ui, productId);
+            else
+                throw new TooManyArgumentsException();
         }
 
-        private ICommand ParseDeactivate(string verb, IEnumerable<string> nouns)
+        private ICommand ParseDeactivate(string verb, List<string> nouns)
         {
-            throw new NotImplementedException();
+            int productId = Int32.Parse(nouns[0]);
+            if (nouns.Count() <= 1)
+                return new DeactivateCommand(_stregsystem, _ui, productId);
+            else
+                throw new TooManyArgumentsException();
         }
 
-        private ICommand ParseActivate(string verb, IEnumerable<string> nouns)
+        private ICommand ParseActivate(string verb, List<string> nouns)
         {
-            throw new NotImplementedException();
+            int productId = Int32.Parse(nouns[0]);
+            if (nouns.Count() <= 1)
+                return new ActivateCommand(_stregsystem, _ui, productId);
+            else
+                throw new TooManyArgumentsException();
         }
 
         private ICommand ParseQuit(string verb, IEnumerable<string> nouns)
         {
-            throw new NotImplementedException();
+            if (nouns.Count() <= 0)
+                return new QuitCommand(_ui);
+            throw new TooManyArgumentsException();
         }
         // if the verb is :quit or :q and there are no nouns
         // return quit command
@@ -131,5 +142,16 @@ namespace Stregsystem
 
 
 
+    }
+
+    [System.Serializable]
+    public class TooManyArgumentsException : System.Exception
+    {
+        public TooManyArgumentsException() { }
+        public TooManyArgumentsException(string message) : base(message) { }
+        public TooManyArgumentsException(string message, System.Exception inner) : base(message, inner) { }
+        protected TooManyArgumentsException(
+            System.Runtime.Serialization.SerializationInfo info,
+            System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
     }
 }
