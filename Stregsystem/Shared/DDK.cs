@@ -8,7 +8,7 @@ namespace Stregsystem.Shared
 
         public override string ToString()
         {
-            return $"{_oere / 100} DDK";
+            return $"{(double)_oere / 100} DDK";
         }
 
         public static bool operator <(Ddk a, Ddk b)
