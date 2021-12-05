@@ -14,7 +14,6 @@ namespace Stregsystem.Transactions
         public BuyTransaction(User user, Product product) : base(user, product.Price)
         {
             _product = product;
-            _product = product;
         }
 
         public override void Execute()
@@ -48,24 +47,8 @@ namespace Stregsystem.Transactions
         {
             Ddk userProxyBalance = _user.Balance;
             userProxyBalance = userProxyBalance - _amount;
-            bool baseTransactionIsLegal = 
-                _product.IsActive && (new Ddk(0) <= userProxyBalance || _product.CanBeBoughtOnCredit);
-
-            if (_product is not SeasonalProduct)
-            {
-                return baseTransactionIsLegal;
-            }
-            else if (_product is SeasonalProduct)
-            {
-                SeasonalProduct product = _product as SeasonalProduct;
-                return baseTransactionIsLegal && product.SeasonStartDate < DateTime.Now 
-                                              && DateTime.Now < product.SeasonEndDate;
-            }
-            else
-            {
-                throw new Exception();
-            }
+            return _product.IsActive
+                   && (new Ddk(0) <= userProxyBalance || _product.CanBeBoughtOnCredit);
         }
-
     }
 }
