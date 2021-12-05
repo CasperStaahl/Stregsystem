@@ -8,6 +8,7 @@ namespace test.SharedTests
     {
         private class TestClass1 { }
         private class TestClass2 { }
+
         [Fact]
         public void IdRelatedToSeperatClassesIterateIndependently()
         {
@@ -17,12 +18,25 @@ namespace test.SharedTests
         }
 
         private class TestClass3 { }
+
         [Fact]
         public void IdRelatedToSameClassIterateCodepently()
         {
             Id<TestClass3> a = new Id<TestClass3>();
             Id<TestClass3> b = new Id<TestClass3>();
             Assert.NotEqual(a.Number, b.Number);
+        }
+
+        private class TestClass4 { }
+
+        [Fact]
+        public void IdThrowsExceptionIfIdIsInUse()
+        {
+            // Given
+            Id<TestClass4> a = new Id<TestClass4>(1);
+
+            // Then
+            Assert.Throws<ArgumentException>(() => new Id<TestClass4>(1));
         }
     }
 }
