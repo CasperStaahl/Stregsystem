@@ -12,7 +12,7 @@ namespace Stregsystem.Transactions
 
         protected Ddk _amount = new Ddk(0);
 
-        protected DateTime _date = new DateTime();
+        private DateTime _date = new DateTime();
 
         private Id<Transaction> _id = new Id<Transaction>();
 
@@ -29,7 +29,7 @@ namespace Stregsystem.Transactions
 
         public override string ToString()
         {
-            return $"{_id} {_user.ToString()} {_amount} {_date.ToString()}";
+            return $"{_id.Number} {_user.ToString()} {_amount} {_date.ToString()}";
         }
     }
 }
