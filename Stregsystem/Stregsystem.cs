@@ -7,6 +7,7 @@ using Stregsystem.Users;
 using System.Linq;
 using System.IO;
 using System.Net.Mail;
+using System.Text.RegularExpressions;
 
 namespace Stregsystem
 {
@@ -35,6 +36,8 @@ namespace Stregsystem
                 int id = Convert.ToInt32(idString);
 
                 string nameString = subs[1];
+                nameString = Regex.Replace(nameString, "<.*?>", String.Empty);
+                nameString = nameString.Replace("\"", String.Empty);
                 Name name = new Name(nameString);
 
                 string priceString = subs[2];
@@ -61,7 +64,7 @@ namespace Stregsystem
                 Name firstName = new Name(firstNameString);
 
                 string lastNameString = subs[2];
-                Name lastName = new Name(firstNameString);
+                Name lastName = new Name(lastNameString);
 
                 string usernameString = subs[3];
                 Username username = new Username(usernameString);
@@ -74,6 +77,7 @@ namespace Stregsystem
                 MailAddress email = new MailAddress(emailString);
 
                 User user = new User(id, firstName, lastName, username, balance, email);
+                _users.Add(user);
                 user.BelowBalanceThreshold += OnUserBalanceBelowThreshold;
             }
         }
@@ -84,16 +88,18 @@ namespace Stregsystem
             handler?.Invoke(this, (User)user);
         }
 
-        public void BuyProduct(User user, Product product)
+        public BuyTransaction BuyProduct(User user, Product product)
         {
-            Transaction transaction = new BuyTransaction(user, product);
+            BuyTransaction transaction = new BuyTransaction(user, product);
             ExecuteTransaction(transaction);
+            return transaction;
         }
 
-        public void AddCreditToAccount(User user, Ddk amount)
+        public InsertCashTransaction AddCreditToAccount(User user, Ddk amount)
         {
-            Transaction transaction = new InsertCashTransaction(user, amount);
+            InsertCashTransaction transaction = new InsertCashTransaction(user, amount);
             ExecuteTransaction(transaction);
+            return transaction;
         }
 
         public Product GetProductById(int idNumber)
