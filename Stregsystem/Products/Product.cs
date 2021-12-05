@@ -4,23 +4,19 @@ namespace Stregsystem.Products
 {
     public class Product
     {
+        public virtual bool IsActive { get; set; }
+
+        public bool CanBeBoughtOnCredit { get; set;}
+
         public Ddk Price { get => _price; }
 
         public Id<Product> Id { get => _id; }
-
-        public bool IsActive { get => _IsActive; }
-
-        public bool CanBeBoughtOnCredit { get => _canBeBoughtOnCredit; }
 
         private Id<Product> _id;
 
         private Name _name;
 
         private Ddk _price = new Ddk(0);
-
-        private bool _IsActive = false;
-
-        private bool _canBeBoughtOnCredit = false;
 
         public override string ToString()
         {
@@ -32,8 +28,8 @@ namespace Stregsystem.Products
             _id = new Id<Product>(id);
             _name = name;
             _price = price;
-            _IsActive = isActive;
-            _canBeBoughtOnCredit = canBeBoughtOnCredit;
+            IsActive = isActive;
+            CanBeBoughtOnCredit = canBeBoughtOnCredit;
         }
     }
 }
