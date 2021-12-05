@@ -13,8 +13,8 @@ namespace Stregsystem
 
         event EventHandler<User> UserBalanceBelowThreshold;
 
-        void AddCreditToAccount(User user, Ddk amount);
-        void BuyProduct(User user, Product product);
+        InsertCashTransaction AddCreditToAccount(User user, Ddk amount);
+        BuyTransaction BuyProduct(User user, Product product);
         Product GetProductById(int idNumber);
         IEnumerable<Transaction> GetTransactions(User user, int count);
         User GetUserByUsername(Username username);
