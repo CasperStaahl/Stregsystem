@@ -46,7 +46,7 @@ namespace Stregsystem.Users
 
         public override string ToString()
         {
-            return _firstName.String + " " + _lastName.String + "(" + _email.Address + ")";
+            return $"{_firstName.String} {_lastName.String} ({_email.Address}) BALANCE : {_balance}";
         }
 
         public override bool Equals(object obj)
