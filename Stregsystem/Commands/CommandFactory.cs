@@ -4,7 +4,7 @@ using System.Linq;
 using Stregsystem.Shared;
 using Stregsystem.Users;
 
-namespace Stregsystem
+namespace Stregsystem.Commands
 {
     internal class CommandFactory
     {
@@ -24,7 +24,7 @@ namespace Stregsystem
             // Take the command string a split it into a verb and several nouns
             IEnumerable<string> terms = command.Split(" ");
             string verb = terms.First();
-            List<string> nouns = terms.Skip(1).ToList();
+            IList<string> nouns = terms.Skip(1).ToList();
 
             // Switch on the verb and handle
             switch (verb)
@@ -46,75 +46,64 @@ namespace Stregsystem
             }
         }
 
-        private ICommand ParseUserRequest(string verb, List<string> nouns)
+        private ICommand ParseUserRequest(string verb, IList<string> nouns)
         {
-            Username username = new Username(nouns[0]);
-            List<int> productIdList = nouns.Select(x => Int32.Parse(x)).ToList();
+            Username username = new Username(verb);
+            IList<int> productIdList = nouns.Select(x => int.Parse(x)).ToList();
 
             if (nouns.Count <= 0)
-                return new GetUserInformatioCommand(_stregsystem, _ui, username );
+                return new GetUserInformatioCommand(_stregsystem, _ui, username);
             else
-                return new BuyCommand(_stregsystem, _ui, username);
+                return new BuyCommand(_stregsystem, _ui, username, productIdList);
         }
 
-        private ICommand ParseAddCredit(List<string> nouns)
-        { 
-            Username username = new Username(nouns[0]) ;
-            Ddk credit = new Ddk(Int32.Parse(nouns[1]));
+        private ICommand ParseAddCredit(IList<string> nouns)
+        {
+            Username username = new Username(nouns[0]);
+            Ddk credit = new Ddk(int.Parse(nouns[1]));
             if (nouns.Count() <= 2)
                 return new AddCreditCommand(_stregsystem, _ui, username, credit);
             else
                 throw new TooManyArgumentsException();
         }
 
-        private ICommand ParseCreditOff(List<string> nouns)
+        private ICommand ParseCreditOff(IList<string> nouns)
         {
-            int productId = Int32.Parse(nouns[0]);
+            int productId = int.Parse(nouns[0]);
             if (nouns.Count() <= 1)
                 return new CreditOffCommand(_stregsystem, _ui, productId);
             else
                 throw new TooManyArgumentsException();
         }
 
-        private ICommand ParseCreditOn(string verb, List<string> nouns)
+        private ICommand ParseCreditOn(string verb, IList<string> nouns)
         {
-            int productId = Int32.Parse(nouns[0]);
+            int productId = int.Parse(nouns[0]);
             if (nouns.Count() <= 1)
                 return new CreditOnCommand(_stregsystem, _ui, productId);
             else
                 throw new TooManyArgumentsException();
         }
 
-        private ICommand ParseDeactivate(string verb, List<string> nouns)
+        private ICommand ParseDeactivate(string verb, IList<string> nouns)
         {
-            int productId = Int32.Parse(nouns[0]);
+            int productId = int.Parse(nouns[0]);
             if (nouns.Count() <= 1)
                 return new DeactivateCommand(_stregsystem, _ui, productId);
             else
                 throw new TooManyArgumentsException();
         }
 
-        private ICommand ParseActivate(string verb, List<string> nouns)
+        private ICommand ParseActivate(string verb, IList<string> nouns)
         {
-            int productId = Int32.Parse(nouns[0]);
+            int productId = int.Parse(nouns[0]);
             if (nouns.Count() <= 1)
                 return new ActivateCommand(_stregsystem, _ui, productId);
             else
                 throw new TooManyArgumentsException();
         }
 
-        private ICommand Temp(Func<IStregsystem, IStregsystemUI, int, ICommand> productCommandConstructor, 
-                              string verb, 
-                              List<string> nouns)
-        {
-            int productId = Int32.Parse(nouns[0]);
-            if (nouns.Count() <= 1)
-                return new productCommandConstructor(_stregsystem, _ui, productId);
-            else
-                throw new TooManyArgumentsException();
-        }
-
-        private ICommand ParseQuit(IEnumerable<string> nouns)
+        private ICommand ParseQuit(IList<string> nouns)
         {
             if (nouns.Count() <= 0)
                 return new QuitCommand(_ui);
