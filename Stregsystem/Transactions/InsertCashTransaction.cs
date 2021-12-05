@@ -8,7 +8,7 @@ namespace Stregsystem.Transactions
     {
         public override void Execute()
         {
-            _user.Balance = _user.Balance + _amount;
+            _user.Balance += _amount;
             base.Execute();
         }
 
