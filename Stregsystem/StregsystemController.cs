@@ -1,19 +1,30 @@
+using Stregsystem.Commands;
+
 namespace Stregsystem
 {
     internal class StregsystemController
     {
         private CommandFactory _commandFactory;
+        private IStregsystemUI _ui;
 
         public StregsystemController(IStregsystemUI ui, IStregsystem stregsystem)
         {
+            _ui = ui;
             _commandFactory = new CommandFactory(ui, stregsystem);
             ui.CommandEntered += TryExecuteCommand;
         }
 
-        private void TryExecuteCommand(object sender, string e)
+        private void TryExecuteCommand(object sender, string commandString)
         {
-            ICommand command = _commandFactory.Parse(e);
-            command.Execute();
+            try
+            {
+                ICommand command = _commandFactory.Parse(commandString);
+                command.Execute();
+            }
+            catch (System.Exception e)
+            {
+                _ui.DisplayGeneralError(e.Message);
+            }
         }
     }
 }
