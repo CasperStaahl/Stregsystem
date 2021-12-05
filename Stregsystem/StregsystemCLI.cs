@@ -63,7 +63,7 @@ namespace Stregsystem
 
         public void DisplayUserNotFound(string username)
         {
-            Console.WriteLine($"User {username} not founde!");
+            Console.WriteLine($"User {username} not found!");
         }
 
         private void DrawUI()
@@ -81,8 +81,9 @@ namespace Stregsystem
             {
                 DrawUI();
                 string command = Console.ReadLine();
-                Console.Clear();
+                Console.WriteLine();
                 OnCommandEntered(command);
+                Console.WriteLine();
             }
         }
 
