@@ -6,10 +6,21 @@ namespace src.Products
 {
     internal class SeasonalProduct : Product
     {
-        public DateTime SeasonStartDate
+        public override bool IsActive
+        {
+            get
+            {
+                return _isActive 
+                       && SeasonStartDate <= DateTime.Now 
+                       && DateTime.Now <= SeasonEndDate;
+            }
+            set => _isActive = value;
+        }
+
+        private DateTime SeasonStartDate
         {
             get => _seasonStartDate;
-            private set
+            set
             {
                 if (value < _seasonEndDate)
                 {
@@ -22,10 +33,10 @@ namespace src.Products
             }
         }
 
-        public DateTime SeasonEndDate
+        private DateTime SeasonEndDate
         {
             get => SeasonEndDate;
-            private set
+            set
             {
                 if (_seasonStartDate < value)
                 {
@@ -37,6 +48,8 @@ namespace src.Products
                 }
             }
         }
+
+        private bool _isActive;
 
         private DateTime _seasonStartDate = new DateTime();
         private DateTime _seasonEndDate = new DateTime();
