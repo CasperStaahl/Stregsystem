@@ -1,17 +1,16 @@
 using System;
-using src.Products;
-using src.Transactions;
+using Stregsystem.Exceptions;
 using Stregsystem.Products;
 using Stregsystem.Shared;
 using Stregsystem.Users;
 
 namespace Stregsystem.Transactions
 {
-    internal class BuyTransaction : Transaction
+    public class BuyTransaction : Transaction
     {
-        private Product _product;
+        private IProduct _product;
 
-        public BuyTransaction(User user, Product product) : base(user, product.Price)
+        public BuyTransaction(IUser user, IProduct product) : base(user, product.Price)
         {
             _product = product;
         }
