@@ -5,19 +5,13 @@ using Stregsystem.Shared;
 
 namespace Stregsystem.Users
 {
-    public class User : IComparable<User>
+    public class User : IComparable<User>, IUser
     {
         public event EventHandler BelowBalanceThreshold;
 
         private static Ddk _balanceThreshold = new Ddk(50);
 
-        public Id<User> Id { get => _id; }
-
-        // public Name FirstName { get => _firstName; }
-
-        // public Name LastName { get => _lastName; }
-
-        // public MailAddress Email { get => _email; }
+        public IId<IUser> Id { get => _id; }
 
         public Username Username { get => _userName; }
 
@@ -32,7 +26,7 @@ namespace Stregsystem.Users
             }
         }
 
-        private Id<User> _id;
+        private IId<IUser> _id;
 
         private Name _firstName;
 
@@ -79,7 +73,7 @@ namespace Stregsystem.Users
 
         public User(int id, Name firstName, Name lastName, Username username, Ddk balance, MailAddress email)
         {
-            _id = new Id<User>(id);
+            _id = new Id<IUser>(id);
             _userName = username;
             _firstName = firstName;
             _lastName = lastName;
