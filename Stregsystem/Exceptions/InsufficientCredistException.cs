@@ -1,4 +1,4 @@
-namespace src.Transactions
+namespace Stregsystem.Exceptions
 {
     [System.Serializable]
     public class InsufficientCredistException : System.Exception
