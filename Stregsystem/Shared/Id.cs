@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Stregsystem.Shared
 {
-    public class Id<T>
+    public class Id<T> : IId<T>
     {
         private static List<int> _activeIds = new();
 
