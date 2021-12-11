@@ -2,17 +2,18 @@ using Stregsystem.Shared;
 
 namespace Stregsystem.Products
 {
-    public class Product
+
+    public class Product : IProduct
     {
         public virtual bool IsActive { get; set; }
 
-        public bool CanBeBoughtOnCredit { get; set;}
+        public bool CanBeBoughtOnCredit { get; set; }
 
         public Ddk Price { get => _price; }
 
-        public Id<Product> Id { get => _id; }
+        public IId<IProduct> Id { get => _id; }
 
-        private Id<Product> _id;
+        private IId<IProduct> _id;
 
         private Name _name;
 
@@ -25,7 +26,7 @@ namespace Stregsystem.Products
 
         public Product(int id, Name name, Ddk price, bool isActive, bool canBeBoughtOnCredit)
         {
-            _id = new Id<Product>(id);
+            _id = new Id<IProduct>(id);
             _name = name;
             _price = price;
             IsActive = isActive;
