@@ -43,6 +43,16 @@ namespace Stregsystem.Shared
             return new Ddk(newNumericValue);
         }
 
+        public static bool operator ==(Ddk a, Ddk b)
+        {
+            return a._oere == b._oere; 
+        }
+
+        public static bool operator !=(Ddk a, Ddk b)
+        {
+            return a._oere != b._oere; 
+        }
+
         public Ddk(int oere)
         {
             _oere = oere;
