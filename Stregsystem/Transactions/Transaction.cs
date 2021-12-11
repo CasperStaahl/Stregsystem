@@ -4,11 +4,11 @@ using Stregsystem.Users;
 
 namespace Stregsystem.Transactions
 {
-    internal abstract class Transaction
+    public abstract class Transaction
     {
-        public User User { get => _user;}
+        public IUser User { get => _user;}
 
-        protected User _user;
+        protected IUser _user;
 
         protected Ddk _amount = new Ddk(0);
 
@@ -16,7 +16,7 @@ namespace Stregsystem.Transactions
 
         private Id<Transaction> _id = new Id<Transaction>();
 
-        protected Transaction(User user, Ddk amount)
+        protected Transaction(IUser user, Ddk amount)
         {
             _user = user;
             _amount = amount;
