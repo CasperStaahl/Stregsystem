@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Stregsystem.Shared;
 using Stregsystem.Users;
+using System;
 
 namespace Stregsystem.Commands
 {
@@ -58,55 +59,75 @@ namespace Stregsystem.Commands
 
         private ICommand ParseAddCredit(IList<string> nouns)
         {
-            Username username = new Username(nouns[0]);
-            Ddk credit = new Ddk(int.Parse(nouns[1]));
-            if (nouns.Count() <= 2)
+            if (nouns.Count() == 2)
+            {
+                Username username = new Username(nouns[0]);
+                Ddk credit = new Ddk(int.Parse(nouns[1]));
                 return new AddCreditCommand(_stregsystem, _ui, username, credit);
+            }
             else
-                throw new TooManyArgumentsException();
+            {
+                throw new ArgumentException();
+            }
         }
 
         private ICommand ParseCreditOff(IList<string> nouns)
         {
-            int productId = int.Parse(nouns[0]);
-            if (nouns.Count() <= 1)
+            if (nouns.Count() == 1)
+            {
+                int productId = int.Parse(nouns[0]);
                 return new CreditOffCommand(_stregsystem, _ui, productId);
+            }
             else
-                throw new TooManyArgumentsException();
+            {
+                throw new ArgumentException();
+            }
         }
 
         private ICommand ParseCreditOn(string verb, IList<string> nouns)
         {
-            int productId = int.Parse(nouns[0]);
-            if (nouns.Count() <= 1)
+            if (nouns.Count() == 1)
+            {
+                int productId = int.Parse(nouns[0]);
                 return new CreditOnCommand(_stregsystem, _ui, productId);
+            }
             else
-                throw new TooManyArgumentsException();
+            {
+                throw new ArgumentException();
+            }
         }
 
         private ICommand ParseDeactivate(string verb, IList<string> nouns)
         {
-            int productId = int.Parse(nouns[0]);
-            if (nouns.Count() <= 1)
+            if (nouns.Count() == 1)
+            {
+                int productId = int.Parse(nouns[0]);
                 return new DeactivateCommand(_stregsystem, _ui, productId);
+            }
             else
-                throw new TooManyArgumentsException();
+            {
+                throw new ArgumentException();
+            }
         }
 
         private ICommand ParseActivate(string verb, IList<string> nouns)
         {
-            int productId = int.Parse(nouns[0]);
-            if (nouns.Count() <= 1)
+            if (nouns.Count() == 1)
+            {
+                int productId = int.Parse(nouns[0]);
                 return new ActivateCommand(_stregsystem, _ui, productId);
+            }
             else
-                throw new TooManyArgumentsException();
+            {
+                throw new ArgumentException();
+            }
         }
 
         private ICommand ParseQuit(IList<string> nouns)
         {
-            if (nouns.Count() <= 0)
+            if (nouns.Count() == 0)
                 return new QuitCommand(_ui);
-            throw new TooManyArgumentsException();
+            throw new ArgumentException();
         }
     }
 }
