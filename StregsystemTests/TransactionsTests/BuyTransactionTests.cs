@@ -3,7 +3,7 @@ using Stregsystem.Products;
 using Stregsystem.Shared;
 using Stregsystem.Transactions;
 using Stregsystem.Users;
-using StregsystemTests.Stubs;
+using StregsystemTests.Fakes;
 using Xunit;
 
 namespace StregsystemTests.TransactionsTests
@@ -14,9 +14,9 @@ namespace StregsystemTests.TransactionsTests
         [Fact]
         public void BuyTransactionSubtractsRightAmount()
         {
-            // Given
-            IUser user = new StubUser() { Balance = new Ddk(100) };
-            IProduct product = new StubProduct() { Price = new Ddk(100), IsActive = true };
+                // Given
+                IUser user = new FakeUser() { Balance = new Ddk(100) };
+            IProduct product = new FakeProduct() { Price = new Ddk(100), IsActive = true };
             BuyTransaction transaction = new BuyTransaction(user, product);
 
             // When
@@ -32,8 +32,8 @@ namespace StregsystemTests.TransactionsTests
         public void WhenExecutedThrowsExceptionWhenNotEnoughMoney()
         {
             // Given
-            IUser user = new StubUser() { Balance = new Ddk(50) };
-            IProduct product = new StubProduct() { Price = new Ddk(100), IsActive = true };
+            IUser user = new FakeUser() { Balance = new Ddk(50) };
+            IProduct product = new FakeProduct() { Price = new Ddk(100), IsActive = true };
             BuyTransaction transaction = new BuyTransaction(user, product);
 
             // Then
@@ -44,8 +44,8 @@ namespace StregsystemTests.TransactionsTests
         public void ThrowsPrductIsNotActiveExceptionWhenProductIsNotActive()
         {
             // Given
-            IUser user = new StubUser() { Balance = new Ddk(50) };
-            IProduct product = new StubProduct() { Price = new Ddk(100), IsActive = false };
+            IUser user = new FakeUser() { Balance = new Ddk(50) };
+            IProduct product = new FakeProduct() { Price = new Ddk(100), IsActive = false };
             BuyTransaction transaction = new BuyTransaction(user, product);
 
             // Then
@@ -56,8 +56,8 @@ namespace StregsystemTests.TransactionsTests
         public void BoughtOnCreditDoesNotThowInsufficientCreditsException()
         {
             // Given
-            IUser user = new StubUser() { Balance = new Ddk(0) };
-            IProduct product = new StubProduct()
+            IUser user = new FakeUser() { Balance = new Ddk(0) };
+            IProduct product = new FakeProduct()
             {
                 Price = new Ddk(100),
                 IsActive = true,
