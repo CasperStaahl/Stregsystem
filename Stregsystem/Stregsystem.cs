@@ -11,24 +11,31 @@ using System.Text.RegularExpressions;
 
 namespace Stregsystem
 {
-    internal class Stregsystem : IStregsystem
+
+    public class Stregsystem : IStregsystem
     {
         public event EventHandler<User> UserBalanceBelowThreshold;
 
-        public IEnumerable<Product> ActiveProducts { get => _products.FindAll(x => x.IsActive); }
+        public IEnumerable<IProduct> ActiveProducts { get => _products.Where(x => x.IsActive); }
 
-        private List<Product> _products = new List<Product>();
+        protected IList<IProduct> _products;
 
-        private List<Transaction> _transactions = new List<Transaction>();
+        protected IList<Transaction> _transactions;
 
-        private List<User> _users = new List<User>();
+        protected IList<IUser> _users;
 
-        // This constructur will instantiate a Stregsystem given two file addresses. 
-        // If either Address is invalid it will throw an error.
-        public Stregsystem(string productFileAddress, string userFileAddress)
+        protected ILogger _logger;
+
+        public Stregsystem()
+        {
+            InitializeStregSystem();
+        }
+
+        protected virtual void InitializeStregSystem()
         {
             // For each line, except the first, in the productFile add a product object to _products
-            foreach (string line in File.ReadLines(productFileAddress).Skip(1))
+            IList<IProduct> products = new List<IProduct>();
+            foreach (string line in File.ReadLines(@"../../../products.csv").Skip(1))
             {
                 string[] subs = line.Split(';');
 
@@ -49,11 +56,13 @@ namespace Stregsystem
                 bool isActive = Convert.ToBoolean(isActiveInt);
 
                 Product product = new Product(id, name, price, isActive, false);
-                _products.Add(product);
+                products.Add(product);
             }
+            _products = products;
 
+            IList<IUser> users = new List<IUser>();
             // For each line in the userFile add a user object to _users
-            foreach (string line in File.ReadLines(userFileAddress).Skip(1))
+            foreach (string line in File.ReadLines(@"../../../users.csv").Skip(1))
             {
                 string[] subs = line.Split(',');
 
@@ -78,16 +87,12 @@ namespace Stregsystem
 
                 User user = new User(id, firstName, lastName, username, balance, email);
                 user.BelowBalanceThreshold += OnUserBalanceBelowThreshold;
-                _users.Add(user);
+                users.Add(user);
             }
-        }
-
-        public Stregsystem(List<Product> products, List<User> users)
-        {
-            foreach (User user in users)
-                user.BelowBalanceThreshold += OnUserBalanceBelowThreshold;
             _users = users;
-            _products = products;
+
+            _transactions = new List<Transaction>();
+            _logger = new Logger();
         }
 
         protected virtual void OnUserBalanceBelowThreshold(object user, EventArgs e)
@@ -96,59 +101,54 @@ namespace Stregsystem
             handler?.Invoke(this, (User)user);
         }
 
-        public BuyTransaction BuyProduct(User user, Product product)
+        public BuyTransaction BuyProduct(IUser user, IProduct product)
         {
             BuyTransaction transaction = new BuyTransaction(user, product);
             ExecuteTransaction(transaction);
             return transaction;
         }
 
-        public InsertCashTransaction AddCreditToAccount(User user, Ddk amount)
+        public InsertCashTransaction AddCreditToAccount(IUser user, Ddk amount)
         {
             InsertCashTransaction transaction = new InsertCashTransaction(user, amount);
             ExecuteTransaction(transaction);
             return transaction;
         }
 
-        public Product GetProductById(int idNumber)
+        public IProduct GetProductById(int idNumber)
         {
-            List<Product> found = _products.FindAll(x => x.Id.Number == idNumber);
-            if (0 < found.Count)
-                return found[0];
+            IProduct found = _products.Where(x => x.Id.Number == idNumber).FirstOrDefault();
+            if (found != null)
+                return found;
             else
                 throw new ProductDoesNotExistException($"product with id {idNumber} does not exist");
         }
 
-        public IEnumerable<User> GetUsers(Predicate<User> predicate)
+        public IEnumerable<IUser> GetUsers(Func<IUser, bool> predicate)
         {
-            return _users.FindAll(predicate);
+            return _users.Where(predicate);
         }
 
-        public User GetUserByUsername(Username username)
+        public IUser GetUserByUsername(Username username)
         {
-            List<User> found = _users.FindAll(x => username.ToString() == x.Username.ToString());
-            if (0 < found.Count)
-                return found[0];
+            IUser found = _users.Where(x => username.ToString() == x.Username.ToString())
+                                .FirstOrDefault();
+            if (found != null)
+                return found;
             else
                 throw new UserDoesNotExistException($"user with username {username.ToString()} does not exist");
         }
 
         public IEnumerable<Transaction> GetTransactions(User user, int count)
         {
-            return _transactions.FindAll(x => x.User == user).Take(count);
+            return _transactions.Where(x => x.User == user).Take(count);
         }
 
         private void ExecuteTransaction(Transaction transaction)
         {
             transaction.Execute();
             _transactions.Add(transaction);
-            log(transaction);
-        }
-
-        private void log(Transaction transaction)
-        {
-            using StreamWriter sw = File.AppendText("TransactionLog.txt");
-            sw.WriteLine(transaction.ToString());
+            _logger.Log(transaction.ToString());
         }
     }
 }
