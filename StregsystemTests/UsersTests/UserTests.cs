@@ -2,6 +2,7 @@ using System;
 using System.Net.Mail;
 using Stregsystem.Shared;
 using Stregsystem.Users;
+using StregsystemTests.Fakes;
 using Xunit;
 
 namespace StregsystemTests
@@ -12,7 +13,7 @@ namespace StregsystemTests
         public void UserRaisesBelowBalanceThresholdWhenBalanceIsBelowThreshold()
         {
             // Given
-            User user = new User(1,
+            User user = new User(new FakeId<IUser>(),
                                  new Name("Test"),
                                  new Name("Testson"),
                                  new Username("test"),
@@ -36,7 +37,7 @@ namespace StregsystemTests
         public void EqualsReturnTrueWhenEqual()
         {
             // Given
-            User user1 = new User(2,
+            User user1 = new User(new FakeId<IUser>(),
                                  new Name("Test"),
                                  new Name("Testson"),
                                  new Username("test"),
@@ -55,14 +56,14 @@ namespace StregsystemTests
         public void EqualsReturnFalseWhenNotEqual()
         {
             // Given
-            User user1 = new User(3,
+            User user1 = new User(new FakeId<IUser>(1),
                                  new Name("Test"),
                                  new Name("Testson"),
                                  new Username("test"),
                                  new Ddk(100),
                                  new MailAddress("test@test.test"));
 
-            User user2 = new User(4,
+            User user2 = new User(new FakeId<IUser>(2),
                                  new Name("Test"),
                                  new Name("Testson"),
                                  new Username("test"),
@@ -78,7 +79,7 @@ namespace StregsystemTests
         public void EqualsReturnFalseWhenNotUser()
         {
             // Given
-            User user1 = new User(5,
+            User user1 = new User(new FakeId<IUser>(),
                                  new Name("Test"),
                                  new Name("Testson"),
                                  new Username("test"),
