@@ -2,7 +2,7 @@ using Stregsystem.Users;
 
 namespace Stregsystem
 {
-    internal class GetUserInformatioCommand : ICommand
+    public class GetUserInformatioCommand : ICommand
     {
         private IStregsystem _stregsystem;
         private IStregsystemUI _ui;
