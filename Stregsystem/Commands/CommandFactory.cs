@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Stregsystem.Shared;
@@ -6,7 +5,7 @@ using Stregsystem.Users;
 
 namespace Stregsystem.Commands
 {
-    internal class CommandFactory
+    public class CommandFactory
     {
         private IStregsystemUI _ui;
         private IStregsystem _stregsystem;

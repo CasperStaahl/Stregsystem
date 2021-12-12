@@ -4,7 +4,7 @@ using System;
 
 namespace Stregsystem.Transactions
 {
-    internal class InsertCashTransaction : Transaction
+    public class InsertCashTransaction : Transaction
     {
         public override void Execute()
         {

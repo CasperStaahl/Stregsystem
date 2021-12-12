@@ -9,7 +9,7 @@ namespace Stregsystem.Users
         Username Username { get; }
         Ddk Balance { get; set; }
 
-        event EventHandler BelowBalanceThreshold;
+        event EventHandler<EventArgs> BelowBalanceThreshold;
 
         int CompareTo(User other);
         bool Equals(object obj);

@@ -1,17 +1,16 @@
 using System;
-using Stregsystem.Products;
 using Stregsystem.Shared;
 
-namespace src.Products
+namespace Stregsystem.Products
 {
-    internal class SeasonalProduct : Product
+    public class SeasonalProduct : Product
     {
         public override bool IsActive
         {
             get
             {
-                return _isActive 
-                       && SeasonStartDate <= DateTime.Now 
+                return _isActive
+                       && SeasonStartDate <= DateTime.Now
                        && DateTime.Now <= SeasonEndDate;
             }
             set => _isActive = value;
@@ -23,13 +22,9 @@ namespace src.Products
             set
             {
                 if (value < _seasonEndDate)
-                {
                     _seasonStartDate = value;
-                }
                 else
-                {
                     throw new ArgumentException();
-                }
             }
         }
 
@@ -39,27 +34,23 @@ namespace src.Products
             set
             {
                 if (_seasonStartDate < value)
-                {
                     _seasonEndDate = value;
-                }
                 else
-                {
                     throw new ArgumentException();
-                }
             }
         }
 
         private bool _isActive;
 
-        private DateTime _seasonStartDate = new DateTime();
-        private DateTime _seasonEndDate = new DateTime();
+        private DateTime _seasonStartDate;
+        private DateTime _seasonEndDate;
 
         public SeasonalProduct(int id, Name name, Ddk price, bool active, bool canBeBoughtOnCredit,
         DateTime seasonStartDate, DateTime seasonEndDate)
         : base(id, name, price, active, canBeBoughtOnCredit)
         {
             _seasonStartDate = seasonStartDate;
-            _seasonEndDate = seasonEndDate;
+            SeasonEndDate = seasonEndDate;
         }
     }
 }

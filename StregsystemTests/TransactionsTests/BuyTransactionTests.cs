@@ -73,6 +73,5 @@ namespace StregsystemTests.TransactionsTests
             Ddk actual = transaction.User.Balance;
             Assert.True(expected == actual);
         }
-
     }
 }

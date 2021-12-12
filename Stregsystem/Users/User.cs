@@ -7,7 +7,7 @@ namespace Stregsystem.Users
 {
     public class User : IComparable<User>, IUser
     {
-        public event EventHandler BelowBalanceThreshold;
+        public event EventHandler<EventArgs> BelowBalanceThreshold;
 
         private static Ddk _balanceThreshold = new Ddk(50);
 
@@ -67,7 +67,7 @@ namespace Stregsystem.Users
 
         protected virtual void OnBelowBalanceThreshold(EventArgs e)
         {
-            EventHandler handler = BelowBalanceThreshold;
+            EventHandler<EventArgs> handler = BelowBalanceThreshold;
             handler?.Invoke(this, e);
         }
 

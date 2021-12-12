@@ -5,7 +5,7 @@ using System;
 
 namespace Stregsystem
 {
-    internal interface IStregsystemUI
+    public interface IStregsystemUI
     {
         event EventHandler<string> CommandEntered;
         void DisplayUserNotFound(string username);

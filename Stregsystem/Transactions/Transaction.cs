@@ -19,7 +19,12 @@ namespace Stregsystem.Transactions
         protected Transaction(IUser user, Ddk amount)
         {
             _user = user;
-            _amount = amount;
+
+            if (new Ddk(0) <= amount)
+                _amount = amount;
+            else
+                throw new ArgumentOutOfRangeException("Transaction amount can not be negative");
+                
         }
 
         public virtual void Execute()

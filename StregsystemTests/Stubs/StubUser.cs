@@ -11,7 +11,7 @@ public class StubUser : IUser
 
     public Ddk Balance { get; set; } = new Ddk(0);
 
-    public event EventHandler BelowBalanceThreshold;
+    public event EventHandler<EventArgs> BelowBalanceThreshold;
 
     public int CompareTo(User other) { return 1; }
 }

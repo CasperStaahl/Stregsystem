@@ -7,7 +7,7 @@ using Stregsystem.Users;
 
 namespace Stregsystem
 {
-    internal interface IStregsystem
+    public interface IStregsystem
     {
         IEnumerable<Product> ActiveProducts { get; }
 
