@@ -18,30 +18,9 @@ namespace Stregsystem
             _stregsystem = stregsystem;
         }
 
-        public void DisplayAdminCommandNotFoundMessage(string adminCommand)
-        {
-            Console.WriteLine($"The admin command \"{adminCommand}\" could not be found!");
-        }
-
         public void DisplayGeneralError(string errorString)
         {
             Console.WriteLine($"ERROR: {errorString}");
-        }
-
-        public void DisplayInsufficientCash(User user, Product product)
-        {
-            Console.WriteLine
-                ($"User \"{user.ToString()}\" does not have enough founds to buy product \"{product.ToString()}\"");
-        }
-
-        public void DisplayProductNotFound(string product)
-        {
-            Console.WriteLine($"{product} could not be found!");
-        }
-
-        public void DisplayTooManyArgumentsError(string command)
-        {
-            Console.WriteLine($"The command \"{command}\" contains to many arguments!");
         }
 
         public void DisplayUserBuysProduct(BuyTransaction transaction)
@@ -49,21 +28,9 @@ namespace Stregsystem
             Console.WriteLine(transaction.ToString());
         }
 
-        // TODO figure out what the fuck count should do
-        public void DisplayUserBuysProduct(int count, BuyTransaction transaction)
-        {
-            DisplayUserBuysProduct(transaction);
-        }
-
         public void DisplayUserInfo(User user)
         {
             Console.WriteLine(user.ToString());
-        }
-
-
-        public void DisplayUserNotFound(string username)
-        {
-            Console.WriteLine($"User {username} not found!");
         }
 
         private void DrawUI()
@@ -97,5 +64,38 @@ namespace Stregsystem
             EventHandler<string> handler = CommandEntered;
             handler?.Invoke(this, command);
         }
+
+        // public void DisplayAdminCommandNotFoundMessage(string adminCommand)
+        // {
+        //     Console.WriteLine($"The admin command \"{adminCommand}\" could not be found!");
+        // }
+
+
+        // public void DisplayInsufficientCash(User user, Product product)
+        // {
+        //     Console.WriteLine
+        //         ($"User \"{user.ToString()}\" does not have enough founds to buy product \"{product.ToString()}\"");
+        // }
+
+        // public void DisplayProductNotFound(string product)
+        // {
+        //     Console.WriteLine($"{product} could not be found!");
+        // }
+
+        // // TODO figure out what the fuck count should do
+        // public void DisplayUserBuysProduct(int count, BuyTransaction transaction)
+        // {
+        //     DisplayUserBuysProduct(transaction);
+        // }
+
+        // public void DisplayTooManyArgumentsError(string command)
+        // {
+        //     Console.WriteLine($"The command \"{command}\" contains to many arguments!");
+        // }
+
+        // public void DisplayUserNotFound(string username)
+        // {
+        //     Console.WriteLine($"User {username} not found!");
+        // }
     }
 }
