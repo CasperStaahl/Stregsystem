@@ -1,6 +1,6 @@
 namespace Stregsystem
 {
-    internal class QuitCommand : ICommand
+    public class QuitCommand : ICommand
     {
         private IStregsystemUI _ui;
 
