@@ -7,22 +7,22 @@ namespace StregsystemTests.SharedTests
     public class NameTests
     {
         [Fact]
-        public void NameCanNotHaveStringValueOfNull()
+        public void Name_Null_ThrowsArgumentNullException()
         {
-            // Then
+            // Assert
             Assert.Throws<ArgumentNullException>(() => new Name(null));
         }
 
         [Fact]
-        public void NameCanBeSet()
+        public void Name_NotNull_DoesNotThrowArgumentException()
         {
-            // Given
-            string nameAsString = "Torben";
+            // Arrange
+            string nameAsString = "";
 
-            // When
+            // Act
             Name name = new Name(nameAsString);
         
-            // Then
+            // Assert
             Assert.Equal(nameAsString, name.String);
         }
     }
