@@ -8,7 +8,7 @@ namespace Stregsystem
     public interface IStregsystemUI
     {
         event EventHandler<string> CommandEntered;
-        void DisplayUserInfo(User user);
+        void DisplayUserInfo(IUser user);
         void DisplayUserBuysProduct(BuyTransaction transaction);
         void Close();
         void DisplayGeneralError(string errorString);
