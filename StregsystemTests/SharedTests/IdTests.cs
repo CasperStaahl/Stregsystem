@@ -2,7 +2,7 @@ using Xunit;
 using Stregsystem.Shared;
 using System;
 
-namespace test.SharedTests
+namespace StregsystemTests.SharedTests
 {
     public class IdTests
     {
@@ -10,33 +10,45 @@ namespace test.SharedTests
         private class TestClass2 { }
 
         [Fact]
-        public void IdRelatedToSeperatClassesIterateIndependently()
+        public void Id_IdsWithDifferentClassParameter_IterateSeperatly()
         {
+            // Arrange
             Id<TestClass1> a = new Id<TestClass1>();
             Id<TestClass2> b = new Id<TestClass2>();
+
+            // Act
+
+            // Assert
             Assert.Equal(a.Number, b.Number);
         }
 
         private class TestClass3 { }
 
         [Fact]
-        public void IdRelatedToSameClassIterateCodepently()
+        public void Id_IdsWithSameClassParameter_IterateCodepently()
         {
+            // Arrange
             Id<TestClass3> a = new Id<TestClass3>();
             Id<TestClass3> b = new Id<TestClass3>();
+
+            // Act
+
+            // Acsset
             Assert.NotEqual(a.Number, b.Number);
         }
 
         private class TestClass4 { }
 
         [Fact]
-        public void IdThrowsExceptionIfIdIsInUse()
+        public void Id_UseSameId_ThrowsArgumenException()
         {
-            // Given
-            Id<TestClass4> a = new Id<TestClass4>(1);
+            // Arrange
+            Id<TestClass4> a = new Id<TestClass4>(0);
 
-            // Then
-            Assert.Throws<ArgumentException>(() => new Id<TestClass4>(1));
+            // Act
+
+            // Assert
+            Assert.Throws<ArgumentException>(() => new Id<TestClass4>(0));
         }
     }
 }
