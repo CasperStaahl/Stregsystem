@@ -17,11 +17,11 @@ namespace Stregsystem
 
         public IEnumerable<Product> ActiveProducts { get => _products.FindAll(x => x.IsActive); }
 
-        private List<Product> _products;
+        private List<Product> _products = new List<Product>();
 
         private List<Transaction> _transactions = new List<Transaction>();
 
-        private List<User> _users;
+        private List<User> _users = new List<User>();
 
         // This constructur will instantiate a Stregsystem given two file addresses. 
         // If either Address is invalid it will throw an error.
