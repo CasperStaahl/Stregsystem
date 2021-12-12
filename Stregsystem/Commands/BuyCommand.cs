@@ -23,9 +23,9 @@ namespace Stregsystem.Commands
 
         public void Execute()
         {
-            User user = _stregsystem.GetUserByUsername(_username);
+            IUser user = _stregsystem.GetUserByUsername(_username);
 
-            IEnumerable<Product> products = _productIdList.Select(id => 
+            IEnumerable<IProduct> products = _productIdList.Select(id => 
                 _stregsystem.GetProductById(id));
 
             foreach (Product product in products)
