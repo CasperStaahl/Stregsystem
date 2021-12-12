@@ -17,6 +17,6 @@ namespace Stregsystem.Transactions
             return $"Insert: {base.ToString()}";
         }
 
-        public InsertCashTransaction(User user, Ddk amount) : base(user, amount) { }
+        public InsertCashTransaction(IUser user, Ddk amount) : base(user, amount) { }
     }
 }
