@@ -2,7 +2,7 @@ using Stregsystem.Products;
 
 namespace Stregsystem.Commands
 {
-    internal class CreditOnCommand : ICommand
+    public class CreditOnCommand : ICommand
     {
         private IStregsystem _stregsystem;
         private IStregsystemUI _ui;
