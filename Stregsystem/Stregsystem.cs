@@ -41,7 +41,8 @@ namespace Stregsystem
                 string[] subs = line.Split(';');
 
                 string idString = subs[0];
-                int id = Convert.ToInt32(idString);
+                int idAsInt = Convert.ToInt32(idString);
+                Id<IProduct> id = new Id<IProduct>(idAsInt);
 
                 string nameString = subs[1];
                 nameString = Regex.Replace(nameString, "<.*?>", String.Empty);
@@ -68,7 +69,8 @@ namespace Stregsystem
                 string[] subs = line.Split(',');
 
                 string idString = subs[0];
-                int id = Convert.ToInt32(idString);
+                int idAsInt = Convert.ToInt32(idString);
+                Id<IUser> id = new Id<IUser>(idAsInt);
 
                 string firstNameString = subs[1];
                 Name firstName = new Name(firstNameString);
