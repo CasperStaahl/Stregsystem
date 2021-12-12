@@ -1,4 +1,5 @@
 using System;
+using Stregsystem.DateTimeProvider;
 using Stregsystem.Shared;
 
 namespace Stregsystem.Products
@@ -10,8 +11,8 @@ namespace Stregsystem.Products
             get
             {
                 return _isActive
-                       && SeasonStartDate <= DateTime.Now
-                       && DateTime.Now <= SeasonEndDate;
+                       && SeasonStartDate <= _dateTimeProvider.Now
+                       && _dateTimeProvider.Now <= SeasonEndDate;
             }
             set => _isActive = value;
         }
@@ -30,7 +31,7 @@ namespace Stregsystem.Products
 
         private DateTime SeasonEndDate
         {
-            get => SeasonEndDate;
+            get => _seasonEndDate;
             set
             {
                 if (_seasonStartDate < value)
@@ -42,15 +43,18 @@ namespace Stregsystem.Products
 
         private bool _isActive;
 
+        private IDateTimeProvider _dateTimeProvider;
+
         private DateTime _seasonStartDate;
         private DateTime _seasonEndDate;
 
-        public SeasonalProduct(int id, Name name, Ddk price, bool active, bool canBeBoughtOnCredit,
-        DateTime seasonStartDate, DateTime seasonEndDate)
+        public SeasonalProduct(IId<IProduct> id, Name name, Ddk price, bool active, bool canBeBoughtOnCredit,
+        DateTime seasonStartDate, DateTime seasonEndDate, IDateTimeProvider dateTimeProvider)
         : base(id, name, price, active, canBeBoughtOnCredit)
         {
             _seasonStartDate = seasonStartDate;
             SeasonEndDate = seasonEndDate;
+            _dateTimeProvider = dateTimeProvider;
         }
     }
 }
