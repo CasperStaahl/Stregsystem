@@ -6,7 +6,7 @@ namespace Stregsystem.Transactions
 {
     public abstract class Transaction
     {
-        public IUser User { get => _user;}
+        public IUser User { get => _user; }
 
         protected IUser _user;
 
@@ -24,7 +24,7 @@ namespace Stregsystem.Transactions
                 _amount = amount;
             else
                 throw new ArgumentOutOfRangeException("Transaction amount can not be negative");
-                
+
         }
 
         public virtual void Execute()
