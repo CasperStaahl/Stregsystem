@@ -17,7 +17,7 @@ namespace Stregsystem.Commands
 
         public void Execute()
         {
-            Product product = _stregsystem.GetProductById(_productId);
+            IProduct product = _stregsystem.GetProductById(_productId);
             product.IsActive = true;
         }
     }
