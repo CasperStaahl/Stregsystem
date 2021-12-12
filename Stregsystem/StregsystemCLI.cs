@@ -28,7 +28,7 @@ namespace Stregsystem
             Console.WriteLine(transaction.ToString());
         }
 
-        public void DisplayUserInfo(User user)
+        public void DisplayUserInfo(IUser user)
         {
             Console.WriteLine(user.ToString());
         }
