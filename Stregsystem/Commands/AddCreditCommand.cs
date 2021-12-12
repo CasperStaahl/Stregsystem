@@ -3,7 +3,7 @@ using Stregsystem.Users;
 
 namespace Stregsystem.Commands
 {
-    internal class AddCreditCommand : ICommand
+    public class AddCreditCommand : ICommand
     {
         private IStregsystem _stregsystem;
         private IStregsystemUI _ui;
