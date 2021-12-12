@@ -9,15 +9,15 @@ namespace Stregsystem
 {
     public interface IStregsystem
     {
-        IEnumerable<Product> ActiveProducts { get; }
+        IEnumerable<IProduct> ActiveProducts { get; }
 
         event EventHandler<User> UserBalanceBelowThreshold;
 
-        InsertCashTransaction AddCreditToAccount(User user, Ddk amount);
-        BuyTransaction BuyProduct(User user, Product product);
-        Product GetProductById(int idNumber);
+        InsertCashTransaction AddCreditToAccount(IUser user, Ddk amount);
+        BuyTransaction BuyProduct(IUser user, IProduct product);
+        IProduct GetProductById(int idNumber);
         IEnumerable<Transaction> GetTransactions(User user, int count);
-        User GetUserByUsername(Username username);
-        IEnumerable<User> GetUsers(Predicate<User> predicate);
+        IUser GetUserByUsername(Username username);
+        IEnumerable<IUser> GetUsers(Func<IUser, bool> predicate);
     }
 }
