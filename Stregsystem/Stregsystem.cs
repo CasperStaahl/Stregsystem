@@ -17,11 +17,11 @@ namespace Stregsystem
 
         public IEnumerable<Product> ActiveProducts { get => _products.FindAll(x => x.IsActive); }
 
-        private List<Product> _products = new List<Product>();
+        private List<Product> _products;
 
         private List<Transaction> _transactions = new List<Transaction>();
 
-        private List<User> _users = new List<User>();
+        private List<User> _users;
 
         // This constructur will instantiate a Stregsystem given two file addresses. 
         // If either Address is invalid it will throw an error.
@@ -77,9 +77,17 @@ namespace Stregsystem
                 MailAddress email = new MailAddress(emailString);
 
                 User user = new User(id, firstName, lastName, username, balance, email);
-                _users.Add(user);
                 user.BelowBalanceThreshold += OnUserBalanceBelowThreshold;
+                _users.Add(user);
             }
+        }
+
+        public Stregsystem(List<Product> products, List<User> users)
+        {
+            foreach (User user in users)
+                user.BelowBalanceThreshold += OnUserBalanceBelowThreshold;
+            _users = users;
+            _products = products;
         }
 
         protected virtual void OnUserBalanceBelowThreshold(object user, EventArgs e)
