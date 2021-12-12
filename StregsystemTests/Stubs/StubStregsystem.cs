@@ -10,21 +10,21 @@ namespace StregsystemTests.Stubs
 {
     class StubStregSystem : IStregsystem
     {
-        public IEnumerable<Product> ActiveProducts => throw new NotImplementedException();
+        public IEnumerable<IProduct> ActiveProducts => throw new NotImplementedException();
 
         public event EventHandler<User> UserBalanceBelowThreshold;
 
-        public InsertCashTransaction AddCreditToAccount(User user, Ddk amount)
+        public InsertCashTransaction AddCreditToAccount(IUser user, Ddk amount)
         {
             throw new NotImplementedException();
         }
 
-        public BuyTransaction BuyProduct(User user, Product product)
+        public BuyTransaction BuyProduct(IUser user, IProduct product)
         {
             throw new NotImplementedException();
         }
 
-        public Product GetProductById(int idNumber)
+        public IProduct GetProductById(int idNumber)
         {
             throw new NotImplementedException();
         }
@@ -34,12 +34,12 @@ namespace StregsystemTests.Stubs
             throw new NotImplementedException();
         }
 
-        public User GetUserByUsername(Username username)
+        public IUser GetUserByUsername(Username username)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<User> GetUsers(Predicate<User> predicate)
+        public IEnumerable<IUser> GetUsers(Func<IUser, bool> predicate)
         {
             throw new NotImplementedException();
         }
