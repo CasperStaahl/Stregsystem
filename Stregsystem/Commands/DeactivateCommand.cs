@@ -2,7 +2,7 @@ using Stregsystem.Products;
 
 namespace Stregsystem.Commands
 {
-    internal class DeactivateCommand : ICommand
+    public class DeactivateCommand : ICommand
     {
         private IStregsystem _stregsystem;
         private IStregsystemUI _ui;
