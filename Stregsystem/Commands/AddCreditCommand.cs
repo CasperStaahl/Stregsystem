@@ -20,7 +20,7 @@ namespace Stregsystem.Commands
 
         public void Execute()
         {
-            User user = _stregsystem.GetUserByUsername(_username);
+            IUser user = _stregsystem.GetUserByUsername(_username);
             _stregsystem.AddCreditToAccount(user, _credit);
         }
     }
