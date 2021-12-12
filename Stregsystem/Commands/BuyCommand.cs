@@ -6,7 +6,7 @@ using Stregsystem.Users;
 
 namespace Stregsystem.Commands
 {
-    internal class BuyCommand : ICommand
+    public class BuyCommand : ICommand
     {
         private IStregsystem _stregsystem;
         private IStregsystemUI _ui;
