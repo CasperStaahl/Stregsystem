@@ -1,7 +1,7 @@
 using System;
 using Stregsystem;
 using Stregsystem.Commands;
-using StregsystemTests.Stubs;
+using StregsystemTests.Fakes;
 using Xunit;
 
 namespace StregsystemTests.CommandsTests
@@ -29,7 +29,7 @@ namespace StregsystemTests.CommandsTests
         {
             // Given
             CommandFactory factory 
-                = new CommandFactory(new StubStregsystemUI(), new StubStregSystem());
+                = new CommandFactory(new FakeStregsystemUI(), new FakeStregsystem());
         
             // Then
             Assert.Throws<ArgumentException>(() => factory.Parse(command));
@@ -42,7 +42,7 @@ namespace StregsystemTests.CommandsTests
         {
             // Given
             CommandFactory factory 
-                = new CommandFactory(new StubStregsystemUI(), new StubStregSystem());
+                = new CommandFactory(new FakeStregsystemUI(), new FakeStregsystem());
 
             // When
             ICommand command = factory.Parse(commandAsString);
@@ -56,7 +56,7 @@ namespace StregsystemTests.CommandsTests
         {
             // Given
             CommandFactory factory 
-                = new CommandFactory(new StubStregsystemUI(), new StubStregSystem());
+                = new CommandFactory(new FakeStregsystemUI(), new FakeStregsystem());
 
             // When
             ICommand command = factory.Parse(":activate 10");
@@ -70,7 +70,7 @@ namespace StregsystemTests.CommandsTests
         {
             // Given
             CommandFactory factory 
-                = new CommandFactory(new StubStregsystemUI(), new StubStregSystem());
+                = new CommandFactory(new FakeStregsystemUI(), new FakeStregsystem());
 
             // When
             ICommand command = factory.Parse(":deactivate 10");
@@ -84,7 +84,7 @@ namespace StregsystemTests.CommandsTests
         {
             // Given
             CommandFactory factory 
-                = new CommandFactory(new StubStregsystemUI(), new StubStregSystem());
+                = new CommandFactory(new FakeStregsystemUI(), new FakeStregsystem());
 
             // When
             ICommand command = factory.Parse(":crediton 10");
@@ -98,7 +98,7 @@ namespace StregsystemTests.CommandsTests
         {
             // Given
             CommandFactory factory 
-                = new CommandFactory(new StubStregsystemUI(), new StubStregSystem());
+                = new CommandFactory(new FakeStregsystemUI(), new FakeStregsystem());
 
             // When
             ICommand command = factory.Parse(":creditoff 10");
@@ -112,7 +112,7 @@ namespace StregsystemTests.CommandsTests
         {
             // Given
             CommandFactory factory 
-                = new CommandFactory(new StubStregsystemUI(), new StubStregSystem());
+                = new CommandFactory(new FakeStregsystemUI(), new FakeStregsystem());
 
             // When
             ICommand command = factory.Parse(":addcredit casper 10");
