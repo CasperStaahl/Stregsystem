@@ -71,9 +71,9 @@ namespace Stregsystem.Users
             handler?.Invoke(this, e);
         }
 
-        public User(int id, Name firstName, Name lastName, Username username, Ddk balance, MailAddress email)
+        public User(IId<IUser> id, Name firstName, Name lastName, Username username, Ddk balance, MailAddress email)
         {
-            _id = new Id<IUser>(id);
+            _id = id;
             _userName = username;
             _firstName = firstName;
             _lastName = lastName;
