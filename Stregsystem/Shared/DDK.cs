@@ -2,9 +2,9 @@ using System;
 
 namespace Stregsystem.Shared
 {
-    public class Ddk
+    public struct Ddk
     {
-        protected int _oere;
+        private int _oere;
 
         public override string ToString()
         {
