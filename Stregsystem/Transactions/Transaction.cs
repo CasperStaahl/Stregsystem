@@ -14,17 +14,13 @@ namespace Stregsystem.Transactions
 
         private DateTime _date = new DateTime();
 
-        private Id<Transaction> _id = new Id<Transaction>();
+        private int _id;
 
-        protected Transaction(IUser user, Ddk amount)
+        protected Transaction(IUser user, Ddk amount, IIdProvider<Transaction> idProvider)
         {
+            _id = idProvider.GetNextId();
             _user = user;
-
-            if (new Ddk(0) <= amount)
-                _amount = amount;
-            else
-                throw new ArgumentOutOfRangeException("Transaction amount can not be negative");
-
+            _amount = amount;
         }
 
         public virtual void Execute()
@@ -34,7 +30,7 @@ namespace Stregsystem.Transactions
 
         public override string ToString()
         {
-            return $"{_id.Number} {_user.ToString()} {_amount} {_date.ToString()}";
+            return $"{_id} {_user.ToString()} {_amount} {_date.ToString()}";
         }
     }
 }

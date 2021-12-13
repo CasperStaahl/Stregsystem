@@ -12,63 +12,71 @@ namespace StregsystemTests.TransactionsTests
     public class BuyTransactionTests
     {
         [Fact]
-        public void BuyTransactionSubtractsRightAmount()
+        public void Execute_ValidBuyTransaction_UserBalanceReduced()
         {
-                // Given
-                IUser user = new FakeUser() { Balance = new Ddk(100) };
-            IProduct product = new FakeProduct() { Price = new Ddk(100), IsActive = true };
-            BuyTransaction transaction = new BuyTransaction(user, product);
+            // Arrange
+            IUser mockUser = new FakeUser() { Balance = new Ddk(1) };
+            IProduct StubProduct = new FakeProduct() { Price = new Ddk(1), IsActive = true };
+            BuyTransaction transaction = 
+                new BuyTransaction(mockUser, StubProduct, new FakeIdProvider<Transaction>());
 
-            // When
+            // Act
             transaction.Execute();
 
-            // Then
+            // Assert
             Ddk expected = new Ddk(0);
             Ddk actual = transaction.User.Balance;
             Assert.True(expected == actual);
         }
 
         [Fact]
-        public void WhenExecutedThrowsExceptionWhenNotEnoughMoney()
+        public void Execute_NotEnoughMoney_ThrowInsufficientCreditsException()
         {
-            // Given
-            IUser user = new FakeUser() { Balance = new Ddk(50) };
-            IProduct product = new FakeProduct() { Price = new Ddk(100), IsActive = true };
-            BuyTransaction transaction = new BuyTransaction(user, product);
+            // Arrange 
+            IUser stubUser = new FakeUser() { Balance = new Ddk(0) };
+            IProduct stubproduct = new FakeProduct() { Price = new Ddk(1), IsActive = true };
+            BuyTransaction transaction = 
+                new BuyTransaction(stubUser, stubproduct, new FakeIdProvider<Transaction>());
 
-            // Then
-            Assert.Throws<InsufficientCredistException>(() => transaction.Execute());
+            // Act
+
+            // Assert
+            Assert.Throws<InsufficientCredistException>(transaction.Execute);
         }
 
         [Fact]
-        public void ThrowsPrductIsNotActiveExceptionWhenProductIsNotActive()
+        public void Execute_ProductIsNotActive_ThrowsProductIsNotActiveException()
         {
-            // Given
-            IUser user = new FakeUser() { Balance = new Ddk(50) };
-            IProduct product = new FakeProduct() { Price = new Ddk(100), IsActive = false };
-            BuyTransaction transaction = new BuyTransaction(user, product);
+            // Arrange
+            IUser stubUser = new FakeUser() { Balance = new Ddk(1) };
+            IProduct stubProduct = new FakeProduct() { Price = new Ddk(1), IsActive = false };
+            BuyTransaction transaction = 
+                new BuyTransaction(stubUser, stubProduct, new FakeIdProvider<Transaction>());
+
+            // Act
 
             // Then
             Assert.Throws<ProductIsNotActiveException>(transaction.Execute);
         }
 
         [Fact]
-        public void BoughtOnCreditDoesNotThowInsufficientCreditsException()
+        public void Execute_ProductCanBeBoughtOnCreditUserInsufficientCredit_UserBalanceReduced()
         {
-            // Given
-            IUser user = new FakeUser() { Balance = new Ddk(0) };
-            IProduct product = new FakeProduct()
+            // Arrange
+            IUser mockUser = new FakeUser() { Balance = new Ddk(0) };
+            IProduct stubProduct = new FakeProduct()
             {
                 Price = new Ddk(100),
                 IsActive = true,
                 CanBeBoughtOnCredit = true
             };
-            BuyTransaction transaction = new BuyTransaction(user, product);
+            BuyTransaction transaction = 
+                new BuyTransaction(mockUser, stubProduct, new FakeIdProvider<Transaction>());
 
-            // When
+            // Act
             transaction.Execute();
 
-            // Then
+            // Assert
             Ddk expected = new Ddk(-100);
             Ddk actual = transaction.User.Balance;
             Assert.True(expected == actual);

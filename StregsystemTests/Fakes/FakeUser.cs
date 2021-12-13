@@ -6,14 +6,17 @@ namespace StregsystemTests.Fakes
 {
     public class FakeUser : IUser
     {
-        public IId<IUser> Id => new FakeId<IUser>();
+        public int Id { get; set; }
 
-        public Username Username { get; set; } = new Username("stub");
+        public Username Username { get; set; }
 
-        public Ddk Balance { get; set; } = new Ddk(0);
+        public Ddk Balance { get; set; }
 
         public event EventHandler<EventArgs> BelowBalanceThreshold;
 
-        public int CompareTo(User other) { return 1; }
+        public int CompareTo(User other)
+        {
+            return 1;
+        }
     }
 }

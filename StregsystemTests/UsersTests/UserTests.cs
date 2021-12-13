@@ -10,17 +10,18 @@ namespace StregsystemTests
     public class UserTests
     {
         [Fact]
-        public void UserRaisesBelowBalanceThresholdWhenBalanceIsBelowThreshold()
+        public void BelowBalanceThreshold_BalanceBelowThreshold_RaiseBelowBalanceThreshold()
         {
-            // Given
-            User user = new User(new FakeId<IUser>(),
+            // Arrange
+            User user = new User(1,
+                                 new FakeIdProvider<IUser>(),
                                  new Name("Test"),
                                  new Name("Testson"),
                                  new Username("test"),
                                  new Ddk(100),
                                  new MailAddress("test@test.test"));
 
-            // Then
+            // Assert
             var evt = Assert.Raises<EventArgs>
             (
                 h => user.BelowBalanceThreshold += h,
@@ -34,61 +35,65 @@ namespace StregsystemTests
         }
 
         [Fact]
-        public void EqualsReturnTrueWhenEqual()
+        public void Equal_UserEqualToSelf_ReturnTrue()
         {
-            // Given
-            User user1 = new User(new FakeId<IUser>(),
-                                 new Name("Test"),
-                                 new Name("Testson"),
-                                 new Username("test"),
-                                 new Ddk(100),
-                                 new MailAddress("test@test.test"));
+            // Arrange
+            User user1 = new User(1,
+                                  new FakeIdProvider<IUser>(),
+                                  new Name("Test"),
+                                  new Name("Testson"),
+                                  new Username("test"),
+                                  new Ddk(100),
+                                  new MailAddress("test@test.test"));
 
-            // When
+            // Act
             User user2 = user1;
 
-            // Then
+            // Assert
             Assert.True(user1.Equals(user2));
             Assert.True(user2.Equals(user1));
         }
 
         [Fact]
-        public void EqualsReturnFalseWhenNotEqual()
+        public void Equal_NotEqual_ReturnFalse()
         {
-            // Given
-            User user1 = new User(new FakeId<IUser>(1),
-                                 new Name("Test"),
-                                 new Name("Testson"),
-                                 new Username("test"),
-                                 new Ddk(100),
-                                 new MailAddress("test@test.test"));
+            // Arrange
+            User user1 = new User(1,
+                                  new FakeIdProvider<IUser>(),
+                                  new Name("Test"),
+                                  new Name("Testson"),
+                                  new Username("test"),
+                                  new Ddk(100),
+                                  new MailAddress("test@test.test"));
 
-            User user2 = new User(new FakeId<IUser>(2),
-                                 new Name("Test"),
-                                 new Name("Testson"),
-                                 new Username("test"),
-                                 new Ddk(100),
-                                 new MailAddress("test@test.test"));
+            User user2 = new User(2,
+                                  new FakeIdProvider<IUser>(),
+                                  new Name("Test"),
+                                  new Name("Testson"),
+                                  new Username("test"),
+                                  new Ddk(100),
+                                  new MailAddress("test@test.test"));
 
-            // Then
+            // Assert
             Assert.False(user1.Equals(user2));
             Assert.False(user2.Equals(user1));
         }
 
         [Fact]
-        public void EqualsReturnFalseWhenNotUser()
+        public void Equals_NotUser_ReturnFalse()
         {
-            // Given
-            User user1 = new User(new FakeId<IUser>(),
-                                 new Name("Test"),
-                                 new Name("Testson"),
-                                 new Username("test"),
-                                 new Ddk(100),
-                                 new MailAddress("test@test.test"));
+            // Arrange
+            User user1 = new User(1,
+                                  new FakeIdProvider<IUser>(),
+                                  new Name("Test"),
+                                  new Name("Testson"),
+                                  new Username("test"),
+                                  new Ddk(100),
+                                  new MailAddress("test@test.test"));
 
             String test = "test";
 
-            // Then
+            // Assert
             Assert.False(user1.Equals(test));
         }
     }

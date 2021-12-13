@@ -5,7 +5,7 @@ namespace Stregsystem.Users
 {
     public interface IUser
     {
-        IId<IUser> Id { get; }
+        int Id { get; }
         Username Username { get; }
         Ddk Balance { get; set; }
 

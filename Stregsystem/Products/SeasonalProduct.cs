@@ -48,9 +48,16 @@ namespace Stregsystem.Products
         private DateTime _seasonStartDate;
         private DateTime _seasonEndDate;
 
-        public SeasonalProduct(IId<IProduct> id, Name name, Ddk price, bool active, bool canBeBoughtOnCredit,
-        DateTime seasonStartDate, DateTime seasonEndDate, IDateTimeProvider dateTimeProvider)
-        : base(id, name, price, active, canBeBoughtOnCredit)
+        public SeasonalProduct(int id, 
+                               IIdProvider<IProduct> idProvider, 
+                               Name name, 
+                               Ddk price, 
+                               bool active, 
+                               bool canBeBoughtOnCredit,
+                               DateTime seasonStartDate, 
+                               DateTime seasonEndDate, 
+                               IDateTimeProvider dateTimeProvider)
+                               : base(id, idProvider, name, price, active, canBeBoughtOnCredit)
         {
             _seasonStartDate = seasonStartDate;
             SeasonEndDate = seasonEndDate;

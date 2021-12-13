@@ -10,6 +10,6 @@ namespace StregsystemTests.Fakes
 
         public Ddk Price { get; set; }
 
-        public IId<IProduct> Id => new FakeId<IProduct>();
+        public int Id { get; set; }
     }
 }

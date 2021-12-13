@@ -11,9 +11,9 @@ namespace Stregsystem.Products
 
         public Ddk Price { get => _price; }
 
-        public IId<IProduct> Id { get => _id; }
+        public int Id { get => _id; }
 
-        private IId<IProduct> _id;
+        private int _id;
 
         private Name _name;
 
@@ -21,12 +21,12 @@ namespace Stregsystem.Products
 
         public override string ToString()
         {
-            return _id.Number + " " + _name.String + " " + _price.ToString();
+            return _id + " " + _name.String + " " + _price.ToString();
         }
 
-        public Product(IId<IProduct> id, Name name, Ddk price, bool isActive, bool canBeBoughtOnCredit)
+        public Product(int id, IIdProvider<IProduct> idProvider, Name name, Ddk price, bool isActive, bool canBeBoughtOnCredit)
         {
-            _id = id;
+            _id = idProvider.TryGetId(id);
             _name = name;
             _price = price;
             IsActive = isActive;

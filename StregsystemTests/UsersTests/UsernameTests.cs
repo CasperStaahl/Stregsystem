@@ -11,8 +11,9 @@ namespace StregsystemTests.UsersTests
         [InlineData("CASPER")]
         [InlineData("@")]
         [InlineData("")]
-        public void InvalidUsernameThrowsArgumentException(string name)
+        public void Username_InvalidNameString_ThrowsArgumentException(string name)
         {
+            // Assert
             Assert.Throws<ArgumentException>(() => new Username(name));
         }
 
@@ -23,12 +24,12 @@ namespace StregsystemTests.UsersTests
         [InlineData("casper_casper")]
         [InlineData("1_2_3_4")]
         [InlineData("___")]
-        public void ValidUsernameIsSet(string nameAsString)
+        public void Username_ValidNameString_UsernameIsSet(string nameAsString)
         {
-            // Given 
+            // Arrange 
             Username name = new Username(nameAsString);
             
-            // Then
+            // Assert
             Assert.Equal(name.ToString(), nameAsString); 
         }
         

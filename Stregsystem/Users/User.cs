@@ -11,7 +11,7 @@ namespace Stregsystem.Users
 
         private static Ddk _balanceThreshold = new Ddk(50);
 
-        public IId<IUser> Id { get => _id; }
+        public int Id { get => _id; }
 
         public Username Username { get => _userName; }
 
@@ -26,7 +26,7 @@ namespace Stregsystem.Users
             }
         }
 
-        private IId<IUser> _id;
+        private int _id;
 
         private Name _firstName;
 
@@ -57,12 +57,12 @@ namespace Stregsystem.Users
 
         public override int GetHashCode()
         {
-            return _id.Number;
+            return _id;
         }
 
         public int CompareTo(User other)
         {
-            return Id.Number.CompareTo(other.Id.Number);
+            return Id.CompareTo(other.Id);
         }
 
         protected virtual void OnBelowBalanceThreshold(EventArgs e)
@@ -71,9 +71,9 @@ namespace Stregsystem.Users
             handler?.Invoke(this, e);
         }
 
-        public User(IId<IUser> id, Name firstName, Name lastName, Username username, Ddk balance, MailAddress email)
+        public User(int id, IIdProvider<IUser> idprovider, Name firstName, Name lastName, Username username, Ddk balance, MailAddress email)
         {
-            _id = id;
+            _id = idprovider.TryGetId(id);
             _userName = username;
             _firstName = firstName;
             _lastName = lastName;

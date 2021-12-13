@@ -17,6 +17,7 @@ namespace Stregsystem.Transactions
             return $"Insert: {base.ToString()}";
         }
 
-        public InsertCashTransaction(IUser user, Ddk amount) : base(user, amount) { }
+        public InsertCashTransaction(IUser user, Ddk amount, IIdProvider<Transaction> idProvider) 
+            : base(user, amount, idProvider) { }
     }
 }

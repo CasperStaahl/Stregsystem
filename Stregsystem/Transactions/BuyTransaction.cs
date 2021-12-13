@@ -10,7 +10,8 @@ namespace Stregsystem.Transactions
     {
         private IProduct _product;
 
-        public BuyTransaction(IUser user, IProduct product) : base(user, product.Price)
+        public BuyTransaction(IUser user, IProduct product, IIdProvider<Transaction> idProvider) 
+            : base(user, product.Price, idProvider)
         {
             _product = product;
         }
