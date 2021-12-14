@@ -82,7 +82,7 @@ namespace Stregsystem
         //     Console.WriteLine($"{product} could not be found!");
         // }
 
-        // // TODO figure out what the fuck count should do
+        // // TODO figure out what count should do
         // public void DisplayUserBuysProduct(int count, BuyTransaction transaction)
         // {
         //     DisplayUserBuysProduct(transaction);
