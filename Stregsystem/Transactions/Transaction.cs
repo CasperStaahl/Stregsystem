@@ -16,7 +16,7 @@ namespace Stregsystem.Transactions
 
         private int _id;
 
-        protected Transaction(IUser user, Ddk amount, IIdProvider<Transaction> idProvider)
+        protected Transaction(IUser user, Ddk amount, IIdProvider idProvider)
         {
             _id = idProvider.GetNextId();
             _user = user;
