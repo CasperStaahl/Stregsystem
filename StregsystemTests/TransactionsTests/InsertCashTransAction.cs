@@ -14,7 +14,7 @@ namespace StregsystemTests.TransactionsTests
             FakeUser mockUser = new FakeUser(){ Balance = new Ddk(0)};
             Ddk amount = new Ddk(1);
             InsertCashTransaction transaction = 
-                new InsertCashTransaction(mockUser, amount, new FakeIdProvider<Transaction>());
+                new InsertCashTransaction(mockUser, amount, new FakeIdProvider());
         
             // Act
             transaction.Execute();
