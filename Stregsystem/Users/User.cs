@@ -71,7 +71,7 @@ namespace Stregsystem.Users
             handler?.Invoke(this, e);
         }
 
-        public User(int id, IIdProvider<IUser> idprovider, Name firstName, Name lastName, Username username, Ddk balance, MailAddress email)
+        public User(int id, IIdProvider idprovider, Name firstName, Name lastName, Username username, Ddk balance, MailAddress email)
         {
             _id = idprovider.TryGetId(id);
             _userName = username;
