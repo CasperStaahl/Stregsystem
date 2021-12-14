@@ -2,7 +2,7 @@ using Stregsystem.Shared;
 
 namespace StregsystemTests.Fakes
 {
-    public class FakeIdProvider<T> : IIdProvider<T>
+    public class FakeIdProvider : IIdProvider
     {
         public int GetNextId()
         {
