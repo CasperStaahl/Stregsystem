@@ -14,7 +14,7 @@ namespace StregsystemTests
         {
             // Arrange
             User user = new User(1,
-                                 new FakeIdProvider<IUser>(),
+                                 new FakeIdProvider(),
                                  new Name("Test"),
                                  new Name("Testson"),
                                  new Username("test"),
@@ -39,7 +39,7 @@ namespace StregsystemTests
         {
             // Arrange
             User user1 = new User(1,
-                                  new FakeIdProvider<IUser>(),
+                                  new FakeIdProvider(),
                                   new Name("Test"),
                                   new Name("Testson"),
                                   new Username("test"),
@@ -59,7 +59,7 @@ namespace StregsystemTests
         {
             // Arrange
             User user1 = new User(1,
-                                  new FakeIdProvider<IUser>(),
+                                  new FakeIdProvider(),
                                   new Name("Test"),
                                   new Name("Testson"),
                                   new Username("test"),
@@ -67,7 +67,7 @@ namespace StregsystemTests
                                   new MailAddress("test@test.test"));
 
             User user2 = new User(2,
-                                  new FakeIdProvider<IUser>(),
+                                  new FakeIdProvider(),
                                   new Name("Test"),
                                   new Name("Testson"),
                                   new Username("test"),
@@ -84,7 +84,7 @@ namespace StregsystemTests
         {
             // Arrange
             User user1 = new User(1,
-                                  new FakeIdProvider<IUser>(),
+                                  new FakeIdProvider(),
                                   new Name("Test"),
                                   new Name("Testson"),
                                   new Username("test"),
