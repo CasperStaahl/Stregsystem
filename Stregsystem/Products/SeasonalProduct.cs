@@ -49,7 +49,7 @@ namespace Stregsystem.Products
         private DateTime _seasonEndDate;
 
         public SeasonalProduct(int id, 
-                               IIdProvider<IProduct> idProvider, 
+                               IIdProvider idProvider, 
                                Name name, 
                                Ddk price, 
                                bool active, 
