@@ -9,7 +9,6 @@ using Stregsystem.Loggers;
 
 namespace Stregsystem
 {
-
     public class Stregsystem : IStregsystem
     {
         public event EventHandler<User> UserBalanceBelowThreshold;
@@ -18,17 +17,17 @@ namespace Stregsystem
 
         protected IList<IProduct> _products;
 
-        protected IList<Transaction> _transactions;
+        protected IList<Transaction> _transactions = new List<Transaction>();
 
         protected IList<IUser> _users;
 
         protected ILogger _logger;
 
-        private IIdProvider<Transaction> _transactionIdProvider;
+        private IIdProvider _transactionIdProvider;
 
         public Stregsystem(IList<IProduct> products,
                            IList<IUser> users,
-                           IIdProvider<Transaction> transactionIdProvider,
+                           IIdProvider transactionIdProvider,
                            ILogger logger)
         {
             _products = products;
@@ -39,76 +38,7 @@ namespace Stregsystem
             foreach (IUser user in _users)
                 user.BelowBalanceThreshold += OnUserBalanceBelowThreshold;
         }
-
-        // protected virtual void InitializeStregSystem()
-        // {
-        //     IIdProvider<IProduct> productsIdProvider = new IdProvider<IProduct>();
-
-        //     IList<IProduct> products = new List<IProduct>();
-        //     foreach (string line in File.ReadLines(@"../../../products.csv").Skip(1))
-        //     {
-        //         string[] subs = line.Split(';');
-
-        //         string idString = subs[0];
-        //         int id = Convert.ToInt32(idString);
-
-        //         string nameString = subs[1];
-        //         nameString = Regex.Replace(nameString, "<.*?>", String.Empty);
-        //         nameString = nameString.Replace("\"", String.Empty);
-        //         Name name = new Name(nameString);
-
-        //         string priceString = subs[2];
-        //         int priceInt = Convert.ToInt32(priceString);
-        //         Ddk price = new Ddk(priceInt);
-
-        //         string isActiveString = subs[3];
-        //         int isActiveInt = Convert.ToInt32(isActiveString);
-        //         bool isActive = Convert.ToBoolean(isActiveInt);
-
-        //         Product product =
-        //             new Product(id, productsIdProvider, name, price, isActive, false);
-        //         products.Add(product);
-        //     }
-        //     _products = products;
-
-        //     IIdProvider<IUser> userIdProvider = new IdProvider<IUser>();
-
-        //     IList<IUser> users = new List<IUser>();
-        //     // For each line in the userFile add a user object to _users
-        //     foreach (string line in File.ReadLines(@"../../../users.csv").Skip(1))
-        //     {
-        //         string[] subs = line.Split(',');
-
-        //         string idString = subs[0];
-        //         int id = Convert.ToInt32(idString);
-
-        //         string firstNameString = subs[1];
-        //         Name firstName = new Name(firstNameString);
-
-        //         string lastNameString = subs[2];
-        //         Name lastName = new Name(lastNameString);
-
-        //         string usernameString = subs[3];
-        //         Username username = new Username(usernameString);
-
-        //         string balanceString = subs[4];
-        //         int balanceInt = Convert.ToInt32(balanceString);
-        //         Ddk balance = new Ddk(balanceInt);
-
-        //         string emailString = subs[5];
-        //         MailAddress email = new MailAddress(emailString);
-
-        //         User user = 
-        //             new User(id, userIdProvider, firstName, lastName, username, balance, email);
-        //         user.BelowBalanceThreshold += OnUserBalanceBelowThreshold;
-        //         users.Add(user);
-        //     }
-        //     _users = users;
-
-        //     _transactions = new List<Transaction>();
-        //     _logger = new Logger();
-        // }
-
+        
         protected virtual void OnUserBalanceBelowThreshold(object user, EventArgs e)
         {
             EventHandler<User> handler = UserBalanceBelowThreshold;
