@@ -16,7 +16,7 @@ namespace StregsystemTests.ProductsTests
                 new FakeDateTimeProvider(new DateTime(2000, 1, 1, 1, 1, 1));
             
             SeasonalProduct product = new SeasonalProduct(1,
-                                                          new FakeIdProvider<IProduct>(),
+                                                          new FakeIdProvider(),
                                                           new Name(""),
                                                           new Ddk(0),
                                                           true,
@@ -40,7 +40,7 @@ namespace StregsystemTests.ProductsTests
                 new FakeDateTimeProvider(new DateTime(2000, 1, 1, 1, 1, 1));
 
             SeasonalProduct product = new SeasonalProduct(1,
-                                                          new FakeIdProvider<IProduct>(),  
+                                                          new FakeIdProvider(),  
                                                           new Name(""),
                                                           new Ddk(0),
                                                           false,
@@ -64,7 +64,7 @@ namespace StregsystemTests.ProductsTests
                 new FakeDateTimeProvider(new DateTime(2000, 1, 1, 1, 1, 2));
             
             SeasonalProduct product = new SeasonalProduct(1,
-                                                          new FakeIdProvider<IProduct>(),
+                                                          new FakeIdProvider(),
                                                           new Name(""),
                                                           new Ddk(0),
                                                           true,
