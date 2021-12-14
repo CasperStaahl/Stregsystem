@@ -5,9 +5,6 @@ using Stregsystem.Shared;
 using Stregsystem.Products;
 using Stregsystem.Users;
 using System.Linq;
-using System.IO;
-using System.Net.Mail;
-using System.Text.RegularExpressions;
 using Stregsystem.Loggers;
 
 namespace Stregsystem
@@ -27,8 +24,7 @@ namespace Stregsystem
 
         protected ILogger _logger;
 
-        private IIdProvider<Transaction> _transactionIdProvider
-            = new IdProvider<Transaction>();
+        private IIdProvider<Transaction> _transactionIdProvider;
 
         public Stregsystem(IList<IProduct> products,
                            IList<IUser> users,
