@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Stregsystem.Shared
 {
-    class IdProvider<T> : IIdProvider<T>
+    public class IdProvider : IIdProvider
     {
         List<int> _usedIds = new() { 0 };
 
