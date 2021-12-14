@@ -18,7 +18,7 @@ namespace StregsystemTests.TransactionsTests
             IUser mockUser = new FakeUser() { Balance = new Ddk(1) };
             IProduct StubProduct = new FakeProduct() { Price = new Ddk(1), IsActive = true };
             BuyTransaction transaction = 
-                new BuyTransaction(mockUser, StubProduct, new FakeIdProvider<Transaction>());
+                new BuyTransaction(mockUser, StubProduct, new FakeIdProvider());
 
             // Act
             transaction.Execute();
@@ -36,7 +36,7 @@ namespace StregsystemTests.TransactionsTests
             IUser stubUser = new FakeUser() { Balance = new Ddk(0) };
             IProduct stubproduct = new FakeProduct() { Price = new Ddk(1), IsActive = true };
             BuyTransaction transaction = 
-                new BuyTransaction(stubUser, stubproduct, new FakeIdProvider<Transaction>());
+                new BuyTransaction(stubUser, stubproduct, new FakeIdProvider());
 
             // Act
 
@@ -51,7 +51,7 @@ namespace StregsystemTests.TransactionsTests
             IUser stubUser = new FakeUser() { Balance = new Ddk(1) };
             IProduct stubProduct = new FakeProduct() { Price = new Ddk(1), IsActive = false };
             BuyTransaction transaction = 
-                new BuyTransaction(stubUser, stubProduct, new FakeIdProvider<Transaction>());
+                new BuyTransaction(stubUser, stubProduct, new FakeIdProvider());
 
             // Act
 
@@ -71,7 +71,7 @@ namespace StregsystemTests.TransactionsTests
                 CanBeBoughtOnCredit = true
             };
             BuyTransaction transaction = 
-                new BuyTransaction(mockUser, stubProduct, new FakeIdProvider<Transaction>());
+                new BuyTransaction(mockUser, stubProduct, new FakeIdProvider());
 
             // Act
             transaction.Execute();
