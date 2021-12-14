@@ -40,7 +40,8 @@ namespace StregsystemTests
 
             // Act
             // Assert
-            Assert.Throws<ProductDoesNotExistException>(() => stregsystem.GetProductById(productId));
+            Assert.Throws<ProductDoesNotExistException>(() => 
+                stregsystem.GetProductById(productId));
         }
 
         [Theory]
