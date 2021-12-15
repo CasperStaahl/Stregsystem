@@ -1,4 +1,4 @@
-﻿namespace Stregsystem.Controller.Loggers
+﻿namespace Stregsystem.Loggers
 {
     public interface ILogger
     {

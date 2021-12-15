@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Stregsystem;
-using Stregsystem.Controller.Loggers;
+using Stregsystem.Loggers;
 using Stregsystem.Model;
 using Stregsystem.Model.Products;
 using Stregsystem.Model.Shared;

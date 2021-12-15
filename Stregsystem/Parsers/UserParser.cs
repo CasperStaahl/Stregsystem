@@ -4,7 +4,7 @@ using System.Net.Mail;
 using Stregsystem.Model.Shared;
 using Stregsystem.Model.Users;
 
-namespace Stregsystem.Controller.Parsers
+namespace Stregsystem.Parsers
 {
     public class UserParser : IParser<IUser>
     {

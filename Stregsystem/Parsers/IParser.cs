@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Stregsystem.Model.Shared;
 
-namespace Stregsystem.Controller.Parsers
+namespace Stregsystem.Parsers
 {
     public interface IParser<T>
     {

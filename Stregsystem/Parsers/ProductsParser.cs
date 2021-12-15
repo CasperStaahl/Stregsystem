@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 using Stregsystem.Model.Products;
 using Stregsystem.Model.Shared;
 
-namespace Stregsystem.Controller.Parsers
+namespace Stregsystem.Parsers
 {
     public class ProductParser : IParser<IProduct>
     {
