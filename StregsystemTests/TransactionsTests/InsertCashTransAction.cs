@@ -1,5 +1,5 @@
-using Stregsystem.Shared;
-using Stregsystem.Transactions;
+using Stregsystem.Model.Shared;
+using Stregsystem.Model.Transactions;
 using StregsystemTests.Fakes;
 using Xunit;
 

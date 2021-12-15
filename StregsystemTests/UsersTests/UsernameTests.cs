@@ -1,5 +1,5 @@
 using System;
-using Stregsystem.Users;
+using Stregsystem.Model.Users;
 using Xunit;
 
 namespace StregsystemTests.UsersTests

@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using Stregsystem;
-using Stregsystem.Loggers;
-using Stregsystem.Products;
-using Stregsystem.Shared;
-using Stregsystem.Users;
+using Stregsystem.Controller.Loggers;
+using Stregsystem.Model;
+using Stregsystem.Model.Products;
+using Stregsystem.Model.Shared;
+using Stregsystem.Model.Users;
 using StregsystemTests.Fakes;
 using Xunit;
 
@@ -90,7 +91,7 @@ namespace StregsystemTests
 
             ILogger stubLogger = new FakeLogger();
 
-            return new Stregsystem.Stregsystem(stubProducts,
+            return new Stregsystem.Model.Stregsystem(stubProducts,
                                                stubUsers,
                                                stubIdProvider,
                                                stubLogger);

@@ -1,8 +1,8 @@
-using Stregsystem.Products;
 using StregsystemTests.Fakes;
 using Xunit;
 using System;
-using Stregsystem.Shared;
+using Stregsystem.Model.Shared;
+using Stregsystem.Model.Products;
 
 namespace StregsystemTests.ProductsTests
 {

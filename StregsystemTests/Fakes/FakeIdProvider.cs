@@ -1,4 +1,4 @@
-using Stregsystem.Shared;
+using Stregsystem.Model.Shared;
 
 namespace StregsystemTests.Fakes
 {

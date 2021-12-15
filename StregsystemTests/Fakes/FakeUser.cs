@@ -1,6 +1,6 @@
 using System;
-using Stregsystem.Shared;
-using Stregsystem.Users;
+using Stregsystem.Model.Shared;
+using Stregsystem.Model.Users;
 
 namespace StregsystemTests.Fakes
 {

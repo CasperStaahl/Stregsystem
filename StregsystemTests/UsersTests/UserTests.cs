@@ -1,7 +1,7 @@
 using System;
 using System.Net.Mail;
-using Stregsystem.Shared;
-using Stregsystem.Users;
+using Stregsystem.Model.Users;
+using Stregsystem.Model.Shared;
 using StregsystemTests.Fakes;
 using Xunit;
 

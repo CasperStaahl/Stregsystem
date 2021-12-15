@@ -1,5 +1,5 @@
 using System;
-using Stregsystem.Shared;
+using Stregsystem.Model.Shared;
 using Xunit;
 
 namespace StregsystemTests.SharedTests

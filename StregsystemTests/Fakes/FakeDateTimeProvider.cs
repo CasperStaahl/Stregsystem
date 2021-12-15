@@ -1,5 +1,5 @@
 using System;
-using Stregsystem.DateTimeProvider;
+using Stregsystem.Model.Shared;
 
 namespace StregsystemTests.Fakes
 {

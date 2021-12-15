@@ -1,6 +1,5 @@
 using System;
-using Stregsystem;
-using Stregsystem.Commands;
+using Stregsystem.Controller.Commands;
 using StregsystemTests.Fakes;
 using Xunit;
 

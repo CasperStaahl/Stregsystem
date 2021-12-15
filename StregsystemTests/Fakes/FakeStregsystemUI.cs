@@ -1,8 +1,7 @@
 using System;
-using Stregsystem;
-using Stregsystem.Products;
-using Stregsystem.Transactions;
-using Stregsystem.Users;
+using Stregsystem.Model.Transactions;
+using Stregsystem.Model.Users;
+using Stregsystem.View;
 
 namespace StregsystemTests.Fakes
 {

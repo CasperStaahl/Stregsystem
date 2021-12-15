@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Stregsystem;
-using Stregsystem.Products;
-using Stregsystem.Shared;
-using Stregsystem.Transactions;
-using Stregsystem.Users;
+using Stregsystem.Model;
+using Stregsystem.Model.Products;
+using Stregsystem.Model.Shared;
+using Stregsystem.Model.Transactions;
+using Stregsystem.Model.Users;
 
 namespace StregsystemTests.Fakes
 {

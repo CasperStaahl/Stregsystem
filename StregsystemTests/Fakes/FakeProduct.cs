@@ -1,5 +1,5 @@
-using Stregsystem.Products;
-using Stregsystem.Shared;
+using Stregsystem.Model.Products;
+using Stregsystem.Model.Shared;
 
 namespace StregsystemTests.Fakes
 {

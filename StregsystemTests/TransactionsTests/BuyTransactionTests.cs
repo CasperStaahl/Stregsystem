@@ -1,8 +1,8 @@
 using Stregsystem.Exceptions;
-using Stregsystem.Products;
-using Stregsystem.Shared;
-using Stregsystem.Transactions;
-using Stregsystem.Users;
+using Stregsystem.Model.Products;
+using Stregsystem.Model.Shared;
+using Stregsystem.Model.Transactions;
+using Stregsystem.Model.Users;
 using StregsystemTests.Fakes;
 using Xunit;
 
