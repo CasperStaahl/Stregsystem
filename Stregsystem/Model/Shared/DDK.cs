@@ -1,6 +1,6 @@
 using System;
 
-namespace Stregsystem.Model.Shared
+namespace Stregsystem.Shared
 {
     public struct Ddk
     {
@@ -9,6 +9,17 @@ namespace Stregsystem.Model.Shared
         public override string ToString()
         {
             return $"{(double)_oere / 100} DDK";
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Ddk ddk &&
+                   _oere == ddk._oere;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(_oere);
         }
 
         public static bool operator <(Ddk a, Ddk b)
@@ -45,12 +56,12 @@ namespace Stregsystem.Model.Shared
 
         public static bool operator ==(Ddk a, Ddk b)
         {
-            return a._oere == b._oere;
+            return a._oere == b._oere; 
         }
 
         public static bool operator !=(Ddk a, Ddk b)
         {
-            return a._oere != b._oere;
+            return a._oere != b._oere; 
         }
 
         public Ddk(int oere)
