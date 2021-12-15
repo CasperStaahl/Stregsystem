@@ -1,6 +1,6 @@
 using System;
 
-namespace Stregsystem.Shared
+namespace Stregsystem.Model.Shared
 {
     public struct Ddk
     {
@@ -56,12 +56,12 @@ namespace Stregsystem.Shared
 
         public static bool operator ==(Ddk a, Ddk b)
         {
-            return a._oere == b._oere; 
+            return a._oere == b._oere;
         }
 
         public static bool operator !=(Ddk a, Ddk b)
         {
-            return a._oere != b._oere; 
+            return a._oere != b._oere;
         }
 
         public Ddk(int oere)
