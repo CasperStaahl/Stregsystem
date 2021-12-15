@@ -1,6 +1,6 @@
 using System.IO;
 
-namespace Stregsystem.Loggers
+namespace Stregsystem.Model.Loggers
 {
     public class Logger : ILogger
     {

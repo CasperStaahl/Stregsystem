@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Stregsystem;
-using Stregsystem.Loggers;
 using Stregsystem.Model;
+using Stregsystem.Model.Loggers;
 using Stregsystem.Model.Products;
 using Stregsystem.Model.Shared;
 using Stregsystem.Model.Users;

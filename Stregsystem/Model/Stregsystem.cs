@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Stregsystem.Loggers;
+using Stregsystem.Model.Loggers;
 using Stregsystem.Model.Products;
 using Stregsystem.Model.Shared;
 using Stregsystem.Model.Transactions;

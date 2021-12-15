@@ -2,8 +2,8 @@
 using System.IO;
 using System.Linq;
 using Stregsystem.Controller;
-using Stregsystem.Loggers;
 using Stregsystem.Model;
+using Stregsystem.Model.Loggers;
 using Stregsystem.Model.Products;
 using Stregsystem.Model.Shared;
 using Stregsystem.Model.Users;

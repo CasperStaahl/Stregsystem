@@ -1,4 +1,4 @@
-using Stregsystem.Loggers;
+using Stregsystem.Model.Loggers;
 
 namespace StregsystemTests.Fakes
 {
