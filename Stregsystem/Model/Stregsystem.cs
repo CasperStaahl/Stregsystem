@@ -15,13 +15,13 @@ namespace Stregsystem.Model
 
         public IEnumerable<IProduct> ActiveProducts { get => _products.Where(x => x.IsActive); }
 
-        protected IList<IProduct> _products;
+        private IList<IProduct> _products;
 
-        protected IList<Transaction> _transactions = new List<Transaction>();
+        private IList<Transaction> _transactions = new List<Transaction>();
 
-        protected IList<IUser> _users;
+        private IList<IUser> _users;
 
-        protected ILogger _logger;
+        private ILogger _logger;
 
         private IIdProvider _transactionIdProvider;
 
